@@ -117,4 +117,111 @@
 - [PyTorch](https://pytorch.org/)
 - [Gradio](https://gradio.app/)
 
+## 如何启动项目
+
+#### 1. 配置第三方大模型api key
+
+​	:key:使用[智普ai](https://open.bigmodel.cn/)开放平台，请跳转到该平台，申请api key。然后，将api key填入`.env`文件中。
+
+#### 2. 创建python环境（>=python3.10）
+
+- 使用conda来管理python环境，所以请先安装conda ([Install Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)):smile_cat:
+
+- 使用conda命令来创建python环境
+
+  ```bash
+  #Create a new environment: Use the following command to create a new Python environment with a specific vesion.(当然国内你可能需要配置conda和pip镜像)
+  
+  conda create --name myenv python=3.10
+  
+  #This will create a new environment named myenv with the specified Python version.
+  #Activate the environment: Once the environment is created, you need to activate it. 
+  
+  conda activate myenv
+  
+  ```
+
+- 安装依赖包
+
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+#### 3. 建立图数据库<img src="https://dist.neo4j.com/wp-content/uploads/20170726233003/hello-world-neo4j-inc-company-name-change.png" alt="Hello, World: Neo4j, Inc." style="zoom:25%;" />
+
+- ##### 请根据以下指引，安装neo4j
+
+[使用docker安装neo4j]: https://hub.docker.com/_/neo4j
+
+<img src="https://avatars.githubusercontent.com/u/5429470?s=280&v=4" alt="Docker · GitHub" style="zoom:25%;" />
+
+
+
+> You can start a Neo4j container like this:
+>
+> ```console
+> docker run \
+>     --publish=7474:7474 --publish=7687:7687 \
+>     --volume=$HOME/neo4j/data:/data \
+>     neo4j
+> ```
+>
+> which allows you to access neo4j through your browser at [http://localhost:7474](http://localhost:7474/).
+>
+> This binds two ports (`7474` and `7687`) for HTTP and Bolt access to the Neo4j API. A volume is bound to `/data` to allow the database to be persisted outside the container.
+>
+> By default, this requires you to login with `neo4j/neo4j` and change the password. You can, for development purposes, disable authentication by passing `--env=NEO4J_AUTH=none` to docker run.
+
+- ##### 将数据导入neo4j     :smiling_imp:
+
+*注：由于数据的建立和规整涉及版权，本项目不提供完整李白的数据，只提供示例数据*
+
+`Cypher query` 语句如下：
+
+```cypher
+# 创建`李白`节点
+CREATE (p:`人物`:`唐`: {name: '李白', PersonId:32540})
+
+# 创建‘高力士’节点
+CREATE (p:`人物`:`唐`: {name: '高力士', PersonId:32541})
+                      
+# 创建李白和高力士的关系
+MATCH (a:`人物`:`唐` {PersonId: 32540}), (b:`人物`:`唐` {PersonId: 32541})
+CREATE (a)-[r:`李白得罪高力士` {since: 2022, strength: 'strong', Notes: '《李太白全集》卷三五《李太白年譜》：天寶三載，甲申。（五月改"年"爲"載"。四十四歲）太白在翰林，代草王言。然性嗜酒，多沉飮，有時召令撰述，方在醉中，不可待，左右以水沃面，稍解，卽令秉筆，頃之而成。帝甚才之，數侍宴飮。因沉醉引足令高力士脫靴，力士恥之，因摘其詩句以激太眞妃。帝三欲官白，妃輒沮之。又爲張垍讒譖，公自知不爲親近所容，懇求還山，帝乃賜金放歸。又引《松窗錄》：會高力士終以脫靴爲深恥，異日，太眞妃重吟前詞，力士戲曰："比以妃子怨李白深入骨髓，何反拳拳如是？"太眞妃驚曰："何翰林學士能辱人如斯！"力士曰："以飛燕指妃子，是賤之甚矣！"太眞妃深然之。上嘗三欲命李白官，卒爲宮中所捍而止。'}]->(b)
+RETURN r
+```
+
+#### 4. 配置文件
+
+有3个配置文件：
+
+`部署环境配置./config/config-deploy.yaml`
+`测试环境配置./config/config-dev.yaml`
+`本地开发配置./config/config-local.yaml`
+
+在`.env`文件中指定启用哪个配置，下面给出一个完整的`.env`内容
+
+```bash
+#PY_ENVIRONMENT=dev
+PY_ENVIRONMENT=local # 启用本地开发环境
+#PY_ENVIRONMENT=deploy
+PY_DEBUG=true
+ZHIPUAI_API_KEY=
+#OPENAI_API_KEY=
+```
+
+#### 5. 白话文搜古文、古文搜古文
+
+:smiley:由于涉及到内存问题，这个两个服务独立部署。目前暂不开源，感兴趣的读者，可以自己独立开发。
+
+
+
+#### 6. 程序启动
+
+启动shell脚本为`restart.sh`
+
+```bash
+> chmod +x ./restart.sh
+> ./restart.sh
+```
 
