@@ -147,15 +147,11 @@
   pip install -r requirements.txt
   ```
 
-#### 3. 建立图数据库<img src="https://dist.neo4j.com/wp-content/uploads/20170726233003/hello-world-neo4j-inc-company-name-change.png" alt="Hello, World: Neo4j, Inc." style="zoom:25%;" />
+#### 3. 建立图数据库<img src="https://dist.neo4j.com/wp-content/uploads/20170726233003/hello-world-neo4j-inc-company-name-change.png" alt="Hello, World: Neo4j, Inc." style="zoom:10%;" />
 
 - ##### 请根据以下指引，安装neo4j
 
-[使用docker安装neo4j]: https://hub.docker.com/_/neo4j
-
-<img src="https://avatars.githubusercontent.com/u/5429470?s=280&v=4" alt="Docker · GitHub" style="zoom:25%;" />
-
-
+[使用docker安装](https://hub.docker.com/_/neo4j)<img src="https://avatars.githubusercontent.com/u/5429470?s=280&v=4" alt="Docker · GitHub" style="zoom:10%;" />
 
 > You can start a Neo4j container like this:
 >
@@ -172,7 +168,7 @@
 >
 > By default, this requires you to login with `neo4j/neo4j` and change the password. You can, for development purposes, disable authentication by passing `--env=NEO4J_AUTH=none` to docker run.
 
-- ##### 将数据导入neo4j     :smiling_imp:
+- ##### 安装完成后，将数据导入neo4j     :smiling_imp:
 
 *注：由于数据的建立和规整涉及版权，本项目不提供完整李白的数据，只提供示例数据*
 
