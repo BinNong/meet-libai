@@ -104,10 +104,13 @@
 
 ### 9. 项目代码结构
 
-![code_flow](./asset/images/code_flow.png)
+请点击这里跳转，[代码结构](code_arch.md):cityscape:
 
 ### 10. 核心函数
 ![get_ans](./asset/images/get_ans.png)
+
+------
+
 
 
 ## 底层主要依赖
