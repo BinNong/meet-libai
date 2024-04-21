@@ -1,5 +1,5 @@
 
-### [遇见李白]<img src="/Users/nongbin/pythonProjects/meet-libai/resource/avatar/libai.jpeg" alt="qw" style="zoom:25%;" />
+### [遇见李白]<img src="./resource/avatar/libai.jpeg" alt="qw" style="zoom:25%;" />
 
 ### 1. 项目背景
 
