@@ -188,7 +188,7 @@
 
 - ##### 安装完成后，将数据导入neo4j     :smiling_imp:
 
-*注：由于数据的建立和规整涉及版权，本项目不提供完整李白的数据，只提供示例数据*
+:warning:<u>*注：由于数据的建立和规整涉及第三方版权，本项目不提供完整李白的数据，只提供示例数据*</u>
 
 `Cypher query` 语句如下：
 
@@ -204,6 +204,8 @@ MATCH (a:`人物`:`唐` {PersonId: 32540}), (b:`人物`:`唐` {PersonId: 32541})
 CREATE (a)-[r:`李白得罪高力士` {since: 2022, strength: 'strong', Notes: '《李太白全集》卷三五《李太白年譜》：天寶三載，甲申。（五月改"年"爲"載"。四十四歲）太白在翰林，代草王言。然性嗜酒，多沉飮，有時召令撰述，方在醉中，不可待，左右以水沃面，稍解，卽令秉筆，頃之而成。帝甚才之，數侍宴飮。因沉醉引足令高力士脫靴，力士恥之，因摘其詩句以激太眞妃。帝三欲官白，妃輒沮之。又爲張垍讒譖，公自知不爲親近所容，懇求還山，帝乃賜金放歸。又引《松窗錄》：會高力士終以脫靴爲深恥，異日，太眞妃重吟前詞，力士戲曰："比以妃子怨李白深入骨髓，何反拳拳如是？"太眞妃驚曰："何翰林學士能辱人如斯！"力士曰："以飛燕指妃子，是賤之甚矣！"太眞妃深然之。上嘗三欲命李白官，卒爲宮中所捍而止。'}]->(b)
 RETURN r
 ```
+
+
 
 #### 4. 配置文件
 
@@ -224,9 +226,11 @@ ZHIPUAI_API_KEY=
 #OPENAI_API_KEY=
 ```
 
+
+
 #### 5. 白话文搜古文、古文搜古文
 
-:smiley:由于涉及到内存问题，这个两个服务独立部署。目前暂不开源，感兴趣的读者，可以自己独立开发。
+:smiley:由于涉及到内存问题，这个两个服务独立部署。目前暂不开源，感兴趣的读者，可以自己独立开发。如果没有这个服务接口，不影响程序运行。
 
 
 
@@ -238,4 +242,14 @@ ZHIPUAI_API_KEY=
 > chmod +x ./restart.sh
 > ./restart.sh
 ```
+
+
+
+
+
+# Coffee :custard:
+
+如果你愿意，你可以**<u>打赏</u>**我 <img src="https://www.pngitem.com/pimgs/m/145-1450643_providing-encouragement-and-support-to-help-people-icon.png" alt="Providing Encouragement And Support To Help People - Icon, HD Png Download  , Transparent Png Image - PNGitem" width="50" />，不在乎数量，你的一个不小心的举动是我前进的动力 <img src="https://static.vecteezy.com/system/resources/previews/028/086/542/non_2x/keep-going-arrow-succes-challenge-color-icon-illustration-vector.jpg" alt="keep going arrow succes challenge color icon vector illustration 28086542  Vector Art at Vecteezy" width="50" />，业余时间搬砖实属不易。
+
+<img src="asset/qr_code/wechat_pay.png" width="200" ><img src="asset/qr_code/ali_pay.png" width="200" >
 
