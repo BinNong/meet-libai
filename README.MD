@@ -114,7 +114,7 @@
 ### 8. 项目技术架构
 
 通过本项目的实施，我们不仅实现了基于知识图谱的问答系统，还积累了丰富的实践经验和知识图谱技术应用经验。在未来的工作中，我们将不断优化问答系统的回答质量和效率，并探索其他类型的问答任务，以满足更多用户的需求。同时，我们将继续更新和维护知识图谱，以保持其准确性、完整性和有效性，为知识图谱技术的发展和应用做出贡献 。以下是项目技术架构图：
-![code_flow](./asset/images/architecture.png)
+![code_flow](https://thumbnail1.baidupcs.com/thumbnail/9641d791an1dcd9ab7b24725debcba9f?fid=34043472-250528-216408436673833&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-eRBw0DWMitCtGLGphXS4VLPTEBE%3d&expires=8h&chkbd=0&chkv=0&dp-logid=306581537623078510&dp-callid=0&time=1713769200&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1)
 
 
 ### 9. 项目代码结构
@@ -122,7 +122,7 @@
 请点击这里跳转，[代码结构](code_arch.md):cityscape:
 
 ### 10. 核心函数
-![get_ans](./asset/images/get_ans.png)
+![get_ans](https://thumbnail1.baidupcs.com/thumbnail/1a568e009s0c34281ceb10734e87ebdf?fid=34043472-250528-212817226012439&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-UcirlQIGfm7MiAvh3Jxmxzopi4I%3d&expires=8h&chkbd=0&chkv=0&dp-logid=306581537623078510&dp-callid=0&time=1713769200&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1)
 
 ------
 
