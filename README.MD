@@ -165,11 +165,11 @@
   pip install -r requirements.txt
   ```
 
-#### 3. 建立图数据库<img src="https://dist.neo4j.com/wp-content/uploads/20170726233003/hello-world-neo4j-inc-company-name-change.png" alt="Hello, World: Neo4j, Inc." style="zoom:10%;" />
+#### 3. 建立图数据库<img src="https://dist.neo4j.com/wp-content/uploads/20170726233003/hello-world-neo4j-inc-company-name-change.png" alt="Hello, World: Neo4j, Inc." width="80" />
 
 - ##### 请根据以下指引，安装neo4j
 
-[使用docker安装](https://hub.docker.com/_/neo4j)<img src="https://avatars.githubusercontent.com/u/5429470?s=280&v=4" alt="Docker · GitHub" style="zoom:10%;" />
+[使用docker安装](https://hub.docker.com/_/neo4j)<img src="https://avatars.githubusercontent.com/u/5429470?s=280&v=4" alt="Docker · GitHub" width="50" />
 
 > You can start a Neo4j container like this:
 >
