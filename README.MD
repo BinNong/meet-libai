@@ -1,7 +1,7 @@
 <div align='center'>
  <img src="./resource/avatar/libai.jpeg" alt="qw" width="200" />
 
-  # 「遇见李白」:books: meet-libai
+  # 「遇见李白」<img src="asset/images/meet-libai-logo.png" alt="qw" width="50" /> meet-libai
 
 </div>
 
