@@ -1,5 +1,20 @@
+<div align='center'>
+ <img src="./resource/avatar/libai.jpeg" alt="qw" width="200" />
 
-### [遇见李白]<img src="./resource/avatar/libai.jpeg" alt="qw" style="zoom:25%;" />
+  # 「遇见李白」:books: meet-libai
+
+</div>
+
+
+------
+
+[![Release Notes](https://img.shields.io/github/release/BinNong/meet-libai)](https://github.com/BinNong/meet-libai/releases)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/BinNong/meet-libai)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/BinNong/meet-libai)
+[![GitHub star chart](https://img.shields.io/github/stars/BinNong/meet-libai?style=social)](https://star-history.com/#BinNong/meet-libai)
+[![Dependency Status](https://img.shields.io/librariesio/github/BinNong/meet-libai)](https://libraries.io/github/BinNong/meet-libai)
+[![Open Issues](https://img.shields.io/github/issues-raw/BinNong/meet-libai)](https://github.com/BinNong/meet-libai/issues)
 
 ### 1. 项目背景
 
