@@ -205,6 +205,18 @@ CREATE (a)-[r:`李白得罪高力士` {since: 2022, strength: 'strong', Notes: '
 RETURN r
 ```
 
+- ##### 确认neo4j数据正常之后，配置config文件（以config-local.yaml为例） :pager:  (连接数据库的url，用户名，密码)
+
+```yaml
+neo4j:
+  url: bolt://localhost:7687
+  database: neo4j
+  username: neo4j
+  password: *****
+# 注意： 以上参数，根据你的数据库实际连接为准
+```
+
+  
 
 
 #### 4. 配置文件
@@ -215,26 +227,71 @@ RETURN r
 `测试环境配置./config/config-dev.yaml`
 `本地开发配置./config/config-local.yaml`
 
-在`.env`文件中指定启用哪个配置，下面给出一个完整的`.env`内容
+在项目根目录下新建`.env`文件作为环境变量配置，并在文件中指定启用哪个环境配置，下面给出一个完整的`.env`内容
 
 ```bash
 #PY_ENVIRONMENT=dev
 PY_ENVIRONMENT=local # 启用本地开发环境
 #PY_ENVIRONMENT=deploy
 PY_DEBUG=true
-ZHIPUAI_API_KEY=
+ZHIPUAI_API_KEY=  # 这里填入你的zhipu api key
 #OPENAI_API_KEY=
+ORGANIZATION_NAME= # 这里填入你的组织名：
 ```
-
-
 
 #### 5. 白话文搜古文、古文搜古文
 
-:smiley:由于涉及到内存问题，这个两个服务独立部署。目前暂不开源，感兴趣的读者，可以自己独立开发。如果没有这个服务接口，不影响程序运行。
+:smiley:由于涉及到内存问题，这个两个服务独立部署。目前暂不开源，感兴趣的读者，可以自己按照如下接口规则独立开发。如果没有这个服务接口，不影响程序运行。
 
+古文搜古文，接口访问示例：
 
+```python
+    data = {
+        "text": '床前明月光', # 古文
+        "conf_key": "chinese-classical", # 预留参数
+        "group": "default", # 预留参数
+        "size": 5, # 返回个数
+        "searcher": 3 # 预留参数
+    }
+    resp = requests.post("http://172.16.67.150:18880/api/search/nl", data=json.dumps(data))
+```
 
-#### 6. 程序启动
+接口返回数据示例：
+
+```json
+{
+  "retCode": 0,
+  "errMsg": null,
+  "values": [
+    {
+      "value": "Ming##@##申佳允##@##天际秋云薄|床前明月光|无由一化羽|回立白苍苍##@##秋兴集古 其八##@##苍苍 天际 秋云 明月",
+      "score": 1.0000004768371582
+    },
+    {
+      "value": "Tang##@##李白##@##床前明月光|疑是地上霜|举头望山月|低头思故乡##@##静夜思##@##山月 霜 明月 低头",
+      "score": 1.0000004768371582
+    },
+    {
+      "value": "tang##@##李白##@##床前明月光|疑是地上霜|举头望明月|低头思故乡##@##静夜思##@##霜 光 明月 低头",
+      "score": 1.0000004768371582
+    },
+    {
+      "value": "Ming##@##高启##@##堂上织流黄|堂前看月光|羞见天孙度|低头入洞房##@##子夜四时歌 其三##@##天孙 月光 洞房 低头",
+      "score": 0.7958479523658752
+    },
+    {
+      "value": "Ming##@##黄渊耀##@##凉风落柳梢|微云淡河面|怀中明月光|多赊不为贱##@##夜坐##@##凉风 柳梢 明月 微云",
+      "score": 0.7571470737457275
+    }
+  ]
+}
+```
+
+score表示得分，value表示一条数据，value中的的各个字段值用##@##隔开 ["朝代","作者", "完整诗篇", "篇名", "关键词"]
+
+#### 6. 程序启动(三种方式)
+
+- [x] 后台启动 :baby_bottle:
 
 启动shell脚本为`restart.sh`
 
@@ -243,7 +300,33 @@ ZHIPUAI_API_KEY=
 > ./restart.sh
 ```
 
+启动成功后可以访问
 
+- webui http://0.0.0.0:7860
+- api http://localhost:18881/docs
+- api doc http://localhost:18881/redoc
+
+- [x] python启动所有任务包括api和webui :radio:
+
+```
+python app.py
+```
+
+启动成功后可以访问 :mag:
+
+- webui http://0.0.0.0:7860
+- api http://localhost:18881/docs
+- api doc http://localhost:18881/redoc
+
+- [x] python 命令启动 webui :man_juggling:
+
+```bash
+python webui.py
+```
+
+启动成功后可以访问 :package:
+
+- webui http://0.0.0.0:7860
 
 
 
