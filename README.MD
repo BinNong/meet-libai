@@ -1,5 +1,5 @@
 <div align='center'>
- <img src="https://thumbnail1.baidupcs.com/thumbnail/b47bf3e24p7c311d1761a0e0bd823854?fid=34043472-250528-629812010976725&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-nHuPFbFmqrRtNLPI6wXTI22imOw%3d&expires=8h&chkbd=0&chkv=0&dp-logid=306457579118020361&dp-callid=0&time=1713769200&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1" alt="libai avatar" width="200" />
+ <img src="https://thumbnail1.baidupcs.com/thumbnail/b47bf3e24p7c311d1761a0e0bd823854?fid=34043472-250528-629812010976725&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-ouGAcqr31hSjBOO%2bV69joq1rL5A%3d&expires=8h&chkbd=0&chkv=0&dp-logid=381492273280173893&dp-callid=0&time=1714046400&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1" alt="libai avatar" width="200" />
 
   # 「遇见李白」<img src="https://thumbnail1.baidupcs.com/thumbnail/8cc7646b4i046706751f4257bd282d8d?fid=34043472-250528-578917712877781&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-LOkaRS3CQqZS8PQAdnwwumHWwy0%3d&expires=8h&chkbd=0&chkv=0&dp-logid=306457579118020361&dp-callid=0&time=1713769200&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1" alt="meet-libai logo" width="50" /> meet-libai
 
@@ -204,6 +204,22 @@ MATCH (a:`人物`:`唐` {PersonId: 32540}), (b:`人物`:`唐` {PersonId: 32541})
 CREATE (a)-[r:`李白得罪高力士` {since: 2022, strength: 'strong', Notes: '《李太白全集》卷三五《李太白年譜》：天寶三載，甲申。（五月改"年"爲"載"。四十四歲）太白在翰林，代草王言。然性嗜酒，多沉飮，有時召令撰述，方在醉中，不可待，左右以水沃面，稍解，卽令秉筆，頃之而成。帝甚才之，數侍宴飮。因沉醉引足令高力士脫靴，力士恥之，因摘其詩句以激太眞妃。帝三欲官白，妃輒沮之。又爲張垍讒譖，公自知不爲親近所容，懇求還山，帝乃賜金放歸。又引《松窗錄》：會高力士終以脫靴爲深恥，異日，太眞妃重吟前詞，力士戲曰："比以妃子怨李白深入骨髓，何反拳拳如是？"太眞妃驚曰："何翰林學士能辱人如斯！"力士曰："以飛燕指妃子，是賤之甚矣！"太眞妃深然之。上嘗三欲命李白官，卒爲宮中所捍而止。'}]->(b)
 RETURN r
 ```
+
+以上数据导入完毕之后，再导入元数据节点（改节点用于记录数据版本号的基本信息）
+
+```cypher
+CREATE (meta_node:Node {
+    name: 'Meta',
+    id: 1010101010,
+    title: 'libai-graph meta node',
+    text: 'store some meta info',
+    timestamp: datetime(),
+    version: 1,
+    status: 'active'
+})
+```
+
+
 
 - ##### 确认neo4j数据正常之后，配置config文件（以config-local.yaml为例） :pager:  (连接数据库的url，用户名，密码)
 
