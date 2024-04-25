@@ -171,6 +171,7 @@ cython_debug/
 # configuaration
 config/config-deploy.yaml
 config/config-dev.yaml
+config/config-me.yaml
 /data/model/graph_entity_searcher/11/
 /data/model/graph_entity_searcher/12/
 /data/model/graph_entity_searcher/
