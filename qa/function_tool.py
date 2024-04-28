@@ -41,7 +41,7 @@ def basic_info_tool(entities: List[_Value] | None) -> Tuple[str, QuestionType] |
 
 def relation_tool(entities: List[_Value] | None) -> Tuple[str, QuestionType] | None:
     """人物关系"""
-    if len(entities) < 2:
+    if not entities or len(entities) < 2:
         return None
     relationship_match = _dao.query_relationship_by_2person_name(entities[0].name, entities[1].name)
     if relationship_match:
