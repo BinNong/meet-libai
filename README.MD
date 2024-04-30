@@ -213,9 +213,8 @@ RETURN r
 以上数据导入完毕之后，再导入元数据节点（改节点用于记录数据版本号的基本信息）
 
 ```cypher
-CREATE (meta_node:Node {
-    name: 'Meta',
-    id: 1010101010,
+CREATE (meta_node:Meta{
+    id: 'meta-001',
     title: 'libai-graph meta node',
     text: 'store some meta info',
     timestamp: datetime(),
