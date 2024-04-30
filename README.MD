@@ -1,7 +1,7 @@
 <div align='center'>
  <img src="https://thumbnail1.baidupcs.com/thumbnail/b47bf3e24p7c311d1761a0e0bd823854?fid=34043472-250528-1087461404740510&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-TcaeuJq1wq59Nm9X%2bsvBOIbivUM%3d&expires=8h&chkbd=0&chkv=0&dp-logid=382052249933207139&dp-callid=0&time=1714050000&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1" alt="libai avatar" width="200" />
 
-  # 「遇见李白」<img src="asset/images/meet-libai-logo.png" alt="meet-libai logo" width="50" /> meet-libai
+  # 「遇见李白」<img src="https://thumbnail1.baidupcs.com/thumbnail/8cc7646b4i046706751f4257bd282d8d?fid=34043472-250528-578917712877781&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-LOkaRS3CQqZS8PQAdnwwumHWwy0%3d&expires=8h&chkbd=0&chkv=0&dp-logid=306457579118020361&dp-callid=0&time=1713769200&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1" alt="meet-libai logo" width="50" /> meet-libai
 
 </div>
 
