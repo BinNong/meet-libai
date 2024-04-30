@@ -17,6 +17,10 @@
 [![Dependency Status](https://img.shields.io/librariesio/github/BinNong/meet-libai)](https://libraries.io/github/BinNong/meet-libai)
 [![Open Issues](https://img.shields.io/github/issues-raw/BinNong/meet-libai)](https://github.com/BinNong/meet-libai/issues)
 
+
+
+<img src="https://thumbnail1.baidupcs.com/thumbnail/fe93bffddt8c872e01d326917f3719dc?fid=34043472-250528-1056602083529884&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-h4LKOi6zVLPO68rWmwqIDNWWmfI%3d&expires=8h&chkbd=0&chkv=0&dp-logid=497129515894838342&dp-callid=0&time=1714478400&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1" width="50%;" />
+
 ### 1. 项目背景
 
 ​       李白 :bust_in_silhouette: 作为唐代杰出诗人，其诗歌作品在中国文学史上具有重要地位。近年来，随着数字技术和人工智能的快速发展，传统文化普及推广的形式也面临着创新与变革。国内外对于李白诗歌的研究虽已相当深入，但在数字化、智能化普及方面仍存在不足。因此，本项目旨在通过构建李白知识图谱，结合大模型训练出专业的AI智能体，以生成式对话应用的形式，推动李白文化的普及与推广。
@@ -115,7 +119,7 @@
 ### 8. 项目技术架构
 
 通过本项目的实施，我们不仅实现了基于知识图谱的问答系统，还积累了丰富的实践经验和知识图谱技术应用经验。在未来的工作中，我们将不断优化问答系统的回答质量和效率，并探索其他类型的问答任务，以满足更多用户的需求。同时，我们将继续更新和维护知识图谱，以保持其准确性、完整性和有效性，为知识图谱技术的发展和应用做出贡献 。以下是项目技术架构图：
-![code_flow](https://thumbnail1.baidupcs.com/thumbnail/9641d791an1dcd9ab7b24725debcba9f?fid=34043472-250528-216408436673833&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-eRBw0DWMitCtGLGphXS4VLPTEBE%3d&expires=8h&chkbd=0&chkv=0&dp-logid=306581537623078510&dp-callid=0&time=1713769200&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1)
+![code_flow](https://thumbnail1.baidupcs.com/thumbnail/9641d791an1dcd9ab7b24725debcba9f?fid=34043472-250528-216408436673833&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-hWhm2rUD6%2biGvNqlWbZnzFBsXJI%3d&expires=8h&chkbd=0&chkv=0&dp-logid=497149457003501879&dp-callid=0&time=1714478400&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1)
 
 
 ### 9. 项目代码结构
@@ -123,7 +127,7 @@
 请点击这里跳转，[代码结构](code_arch.md):cityscape:
 
 ### 10. 核心函数
-![get_ans](https://thumbnail1.baidupcs.com/thumbnail/1a568e009s0c34281ceb10734e87ebdf?fid=34043472-250528-212817226012439&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-UcirlQIGfm7MiAvh3Jxmxzopi4I%3d&expires=8h&chkbd=0&chkv=0&dp-logid=306581537623078510&dp-callid=0&time=1713769200&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1)
+![get_ans](https://thumbnail1.baidupcs.com/thumbnail/1a568e009s0c34281ceb10734e87ebdf?fid=34043472-250528-212817226012439&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-4k%2f5kvsDm9VqpNlLXxs3UnnqHfw%3d&expires=8h&chkbd=0&chkv=0&dp-logid=497149457003501879&dp-callid=0&time=1714478400&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1)
 
 ------
 
@@ -351,5 +355,5 @@ python webui.py
 
 如果你愿意，你可以**<u>打赏</u>**我 <img src="https://www.pngitem.com/pimgs/m/145-1450643_providing-encouragement-and-support-to-help-people-icon.png" alt="Providing Encouragement And Support To Help People - Icon, HD Png Download  , Transparent Png Image - PNGitem" width="50" />，不在乎数量，你的一个不小心的举动是我前进的动力 <img src="https://static.vecteezy.com/system/resources/previews/028/086/542/non_2x/keep-going-arrow-succes-challenge-color-icon-illustration-vector.jpg" alt="keep going arrow succes challenge color icon vector illustration 28086542  Vector Art at Vecteezy" width="50" />，业余时间搬砖实属不易。
 
-<img src="https://thumbnail1.baidupcs.com/thumbnail/212e3520eh7fae4a25b5309cedede6d2?fid=34043472-250528-143087082041132&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-hTk%2bqi%2f8sfmDAsw70ggRP4LbOWY%3d&expires=8h&chkbd=0&chkv=0&dp-logid=306371656598938275&dp-callid=0&time=1713769200&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1" width="200" ><img src="https://thumbnail1.baidupcs.com/thumbnail/de59d425ev683abae10ec3570ba2a59a?fid=34043472-250528-1103275895466054&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-QAszWS%2b3rougdwChpNB9rVY7%2bMQ%3d&expires=8h&chkbd=0&chkv=0&dp-logid=306362509514716623&dp-callid=0&time=1713769200&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1" width="200" >
+<img src="asset/qr_code/ali_pay.png" width="200" ><img src="asset/qr_code/wechat_pay.png" width="200" >
 
