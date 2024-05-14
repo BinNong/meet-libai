@@ -182,7 +182,7 @@
 > docker run \
 >     --publish=7474:7474 --publish=7687:7687 \
 >     --volume=$HOME/neo4j/data:/data \
->     neo4j
+>     neo4j:5.12.0
 > ```
 >
 > which allows you to access neo4j through your browser at [http://localhost:7474](http://localhost:7474/).
@@ -199,10 +199,10 @@
 
 ```cypher
 # 创建`李白`节点
-CREATE (p:`人物`:`唐`: {name: '李白', PersonId:32540})
+CREATE (p:`人物`:`唐`{name: '李白', PersonId:32540})
 
 # 创建‘高力士’节点
-CREATE (p:`人物`:`唐`: {name: '高力士', PersonId:32541})
+CREATE (p:`人物`:`唐`{name: '高力士', PersonId:32541})
                       
 # 创建李白和高力士的关系
 MATCH (a:`人物`:`唐` {PersonId: 32540}), (b:`人物`:`唐` {PersonId: 32541})
@@ -348,7 +348,15 @@ python webui.py
 
 - webui http://0.0.0.0:7860
 
+#### 7. 调用程序api构建图数据库的实体索引（在本地创建ac自动机），这一步成功后才可使用图数据
+访问api： http://localhost:18881/docs
+打开如下图所示, 然后点击build model：
 
+![all_api](/Users/nongbin/pythonProjects/meet-libai/asset/images/all_api.png)
+
+接着填写如下如下参数后，点击execute：
+
+![graph_entity_build](/Users/nongbin/pythonProjects/meet-libai/asset/images/graph_entity_build.png)
 
 # Coffee :custard:
 
