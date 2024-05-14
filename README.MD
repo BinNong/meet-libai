@@ -1,7 +1,7 @@
 <div align='center'>
- <img src="https://thumbnail1.baidupcs.com/thumbnail/b47bf3e24p7c311d1761a0e0bd823854?fid=34043472-250528-1087461404740510&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-76IdTE2INwYSfHcVCKUGJjYJZbE%3d&expires=8h&chkbd=0&chkv=0&dp-logid=496762142005811378&dp-callid=0&time=1714478400&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1" alt="libai avatar" width="200" />
+ <img src="resource/avatar/libai.jpeg" alt="libai avatar" width="200" />
 
-  # 「遇见李白」<img src="https://thumbnail1.baidupcs.com/thumbnail/8cc7646b4i046706751f4257bd282d8d?fid=34043472-250528-578917712877781&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-IRwjrWeEIl55%2fWlwglSogI0rjcE%3d&expires=8h&chkbd=0&chkv=0&dp-logid=496774819496704790&dp-callid=0&time=1714478400&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1" alt="meet-libai logo" width="50" /> meet-libai
+  # 「遇见李白」<img src="asset/images/meet-libai-logo.png" alt="meet-libai logo" width="50" /> meet-libai
 
 </div>
 
@@ -119,7 +119,7 @@
 ### 8. 项目技术架构
 
 通过本项目的实施，我们不仅实现了基于知识图谱的问答系统，还积累了丰富的实践经验和知识图谱技术应用经验。在未来的工作中，我们将不断优化问答系统的回答质量和效率，并探索其他类型的问答任务，以满足更多用户的需求。同时，我们将继续更新和维护知识图谱，以保持其准确性、完整性和有效性，为知识图谱技术的发展和应用做出贡献 。以下是项目技术架构图：
-![code_flow](https://thumbnail1.baidupcs.com/thumbnail/9641d791an1dcd9ab7b24725debcba9f?fid=34043472-250528-216408436673833&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-hWhm2rUD6%2biGvNqlWbZnzFBsXJI%3d&expires=8h&chkbd=0&chkv=0&dp-logid=497149457003501879&dp-callid=0&time=1714478400&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1)
+![code_flow](asset/images/architecture.png)
 
 
 ### 9. 项目代码结构
@@ -127,7 +127,7 @@
 请点击这里跳转，[代码结构](code_arch.md):cityscape:
 
 ### 10. 核心函数
-![get_ans](https://thumbnail1.baidupcs.com/thumbnail/1a568e009s0c34281ceb10734e87ebdf?fid=34043472-250528-212817226012439&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-4k%2f5kvsDm9VqpNlLXxs3UnnqHfw%3d&expires=8h&chkbd=0&chkv=0&dp-logid=497149457003501879&dp-callid=0&time=1714478400&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1)
+![get_ans](asset/images/get_ans.png)
 
 ------
 
