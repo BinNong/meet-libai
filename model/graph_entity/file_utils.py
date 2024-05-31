@@ -94,6 +94,7 @@ def _(version: NoneType):
                 if meta_node['timestamp']:
                     meta_node['timestamp'] = str(meta_node['timestamp'])
                 json.dump(meta_node, f, ensure_ascii=False, indent=4)
+                f.flush()
 
     return Writer()
 
@@ -119,6 +120,7 @@ def _(version: int):
             row = [str(data_node[field]).replace("\n", " ").strip() for field in FIELD_NAMES]
             line = ",".join(row)
             self.file_handle.write(line + "\n")
+            self.file_handle.flush()
 
         def __del__(self):
             self.file_handle.flush()
