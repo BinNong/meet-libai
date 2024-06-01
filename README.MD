@@ -352,11 +352,11 @@ python webui.py
 访问api： http://localhost:18881/docs
 打开如下图所示, 然后点击build model：
 
-![all_api](/Users/nongbin/pythonProjects/meet-libai/asset/images/all_api.png)
+![all_api](asset/images/all_api.png)
 
 接着填写如下如下参数后，点击execute：
 
-![graph_entity_build](/Users/nongbin/pythonProjects/meet-libai/asset/images/graph_entity_build.png)
+![graph_entity_build](asset/images/graph_entity_build.png)
 
 # Coffee :custard:
 
