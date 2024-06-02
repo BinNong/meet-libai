@@ -9,7 +9,7 @@ from typing import List, Dict
 from config.config import Config
 from lang_chain.client import get_ai_client
 
-_GENERATE_AUDIO_PROMPT_ = "请从上述对话中帮我提取出即将要转成语音的文本"
+_GENERATE_AUDIO_PROMPT_ = "请从上述对话中帮我提取出即将要转成语音的文本，不要包含提示文字"
 __client = get_ai_client()
 
 
@@ -76,14 +76,14 @@ def get_tts_model_name(lang: str, gender: str) -> str:
                                        , "voice"
                                        , "NORMAL-FEMALE"))
 
-    if lang == "陕西话" and (gender == "女声" or gender=="无"):
+    if lang == "陕西话" and (gender == "女声" or gender == "无"):
         return (Config.get_instance().
                 get_with_nested_params("lang-chain"
                                        , "audio"
                                        , "voice"
                                        , "SHANXI-FEMALE"))
 
-    if lang == "东北话" and (gender == "女声" or gender=="无"):
+    if lang == "东北话" and (gender == "女声" or gender == "无"):
         return (Config.get_instance().
                 get_with_nested_params("lang-chain"
                                        , "audio"
@@ -97,7 +97,7 @@ def get_tts_model_name(lang: str, gender: str) -> str:
                                        , "voice"
                                        , "HK-FEMALE"))
 
-    if lang == "粤语" and (gender == "男声" or gender=="无"):
+    if lang == "粤语" and (gender == "男声" or gender == "无"):
         return (Config.get_instance().
                 get_with_nested_params("lang-chain"
                                        , "audio"
@@ -111,7 +111,7 @@ def get_tts_model_name(lang: str, gender: str) -> str:
                                        , "voice"
                                        , "TW-MALE"))
 
-    if lang == "台湾话" and (gender == "女声" or gender=="无"):
+    if lang == "台湾话" and (gender == "女声" or gender == "无"):
         return (Config.get_instance().
                 get_with_nested_params("lang-chain"
                                        , "audio"

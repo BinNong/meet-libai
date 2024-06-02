@@ -4,11 +4,13 @@
 # @FileName: function_tool.py
 # @Software: PyCharm
 # @Affiliation: tfswufe.edu.cn
+import json
 from typing import List, Tuple, Callable
 
 from zhipuai.core._sse_client import StreamResponse
 
 from dao.graph.graph_dao import GraphDao
+from lang_chain.retriever.ppt_content_retriever import generate_ppt_content
 from qa.question_type import QuestionType
 from model.graph_entity.search_model import _Value
 from lang_chain.retriever.image_text_retriever import extract_text as extract_image_text
@@ -18,6 +20,7 @@ from lang_chain.retriever.audio_text_retriever import extract_text as extract_au
     get_tts_model_name, extract_gender
 from lang_chain.retriever.video_text_retriever import extract_text as extract_video_text
 from lang_chain.sora_video import generate as generate_video
+from lang_chain.ppt_generation import generate as generate_ppt
 from lang_chain import rag_chain
 from lang_chain.poetry_search import search_by_chinese, search_by_poetry
 from lang_chain.retriever.chinese_text_for_poetry_retriever import extract_text
@@ -119,6 +122,16 @@ def search_poetry_by_poetry_tool(
     return table, QuestionType.CHINESE2POETRY
 
 
+def ppt_generation_tool(
+        question: str,
+        history: List[List[str] | None] = None
+) -> Tuple[Tuple[str, str], QuestionType]:
+    raw_text: str = generate_ppt_content(question, history)
+    ppt_content = json.loads(raw_text)
+    ppt_file: str = generate_ppt(ppt_content)
+    return (ppt_file, "ppt"), QuestionType.PPT
+
+
 def process_unknown_question_tool(
         question: str,
         history: List[List[str] | None] = None,
@@ -135,6 +148,7 @@ TOOLS_MAPPING = {
     QuestionType.IMAGES: images_generation_tool,
     QuestionType.AUDIO: audio_generation_tool,
     QuestionType.VIDEOS: video_generation_tool,
+    QuestionType.PPT: ppt_generation_tool,
     QuestionType.DOCUMENT: document_search_tool,
     QuestionType.CHINESE2POETRY: search_poetry_by_chinese_tool,
     QuestionType.POETRY2POETRY: search_poetry_by_poetry_tool,
@@ -158,6 +172,7 @@ FUNCTION_ARGS_MAPPING = {
     QuestionType.IMAGES: lambda args: args[1:3],
     QuestionType.AUDIO: lambda args: args[1:3],
     QuestionType.VIDEOS: lambda args: args[1:3],
+    QuestionType.PPT: lambda args: args[1:3],
     QuestionType.DOCUMENT: lambda args: args[1:3],
     QuestionType.CHINESE2POETRY: lambda args: args[:3],
     QuestionType.POETRY2POETRY: lambda args: args[:3],

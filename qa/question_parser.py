@@ -7,6 +7,8 @@
 from enum import Enum
 from typing import List
 
+from icecream import ic
+
 from lang_chain.zhipu_chat import chat_with_ai
 from model.graph_entity.search_model import _Value
 from model.graph_entity.search_service import search
@@ -27,6 +29,7 @@ def parse_question(question: str) -> QuestionType:
     prompt = get_question_parser_prompt(question)
     parse_result = chat_with_ai(prompt)
     question_type = QUESTION_MAP[parse_result]
+    ic(question_type)
 
     return question_type
 

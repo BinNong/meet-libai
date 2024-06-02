@@ -24,7 +24,7 @@ def chat_libai(message, history):
             yield answers[0][: i + 1]
 
     elif (answers[-1] == QuestionType.CHINESE2POETRY or
-          answers[-1]==QuestionType.POETRY2POETRY):
+          answers[-1] == QuestionType.POETRY2POETRY):
         yield answers[0]
 
     elif (answers[-1] == QuestionType.HELLO or
@@ -38,7 +38,8 @@ def chat_libai(message, history):
 
     elif (answers[-1] == QuestionType.IMAGES or
           answers[-1] == QuestionType.AUDIO or
-          answers[-1] == QuestionType.VIDEOS):  # 返回图片、音频或视频
+          answers[-1] == QuestionType.VIDEOS or
+          answers[-1] == QuestionType.PPT):  # 返回图片、音频、视频,ppt
         yield answers[0]
 
     elif answers[-1] == QuestionType.DOCUMENT:
@@ -51,3 +52,5 @@ def chat_libai(message, history):
 
         partial_message += answers[0][0]
         yield partial_message
+    else:
+        raise Exception("Unknown question type")

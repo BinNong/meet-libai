@@ -45,7 +45,7 @@ def search_by_chinese(chinese_sentence: str) -> str:
         "searcher": 1
     }
     ic(data)
-    resp = requests.post("http://172.16.67.150:18880/api/search/nl", data=json.dumps(data))
+    resp = requests.post("http://172.16.67.154:18880/api/search/nl", data=json.dumps(data))
     # if status_code is not 200, log the warning information and return empty list
     if resp.status_code != 200:
         __logger.error(f"search by chinese failed, status_code: {resp.status_code}")
@@ -76,7 +76,7 @@ def search_by_poetry(chinese_sentence: str) -> str:
         "searcher": 3
     }
     ic(data)
-    resp = requests.post("http://172.16.67.150:18880/api/search/nl", data=json.dumps(data))
+    resp = requests.post("http://172.16.67.154:18880/api/search/nl", data=json.dumps(data))
     # if status_code is not 200, log the warning information and return empty list
     if resp.status_code != 200:
         __logger.error(f"search by chinese failed, status_code: {resp.status_code}")

@@ -17,11 +17,11 @@ import hashlib
 import os.path
 from pathlib import Path
 
-from apscheduler.schedulers.background import BackgroundScheduler
 import edge_tts
 
 from env import get_app_root
 from logger import Logger
+from utils.file_util import clear_files_by_timediff
 from utils.schedule import get_scheduler
 
 _logger: Logger = Logger(Path(__file__).name)
@@ -51,18 +51,10 @@ def generate(text: str, model_name: str) -> str:
 
 
 def clear_audio_cache():
-    for file in os.listdir(_OUTPUT_DIR):
-        file_path = os.path.join(_OUTPUT_DIR, file)
-
-        creation_time = os.path.getctime(file_path)
-        current_time = datetime.datetime.now().timestamp()
-
-        if current_time - creation_time > 600:
-            try:
-                if os.path.isfile(file_path):
-                    os.unlink(file_path)
-            except Exception as e:
-                _logger.error(f"删除文件时出错：{e}")
+    try:
+        clear_files_by_timediff(_OUTPUT_DIR, datetime.timedelta(minutes=10).seconds)
+    except Exception as e:
+        _logger.error(f"clear_audio_cache error: {e}")
 
 
 get_scheduler().add_job(clear_audio_cache, "interval", seconds=10, id="clear_audio_cache")
