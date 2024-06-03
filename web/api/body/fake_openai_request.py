@@ -37,7 +37,7 @@ class ChatRequest(BaseModel):
     seed: Optional[Union[int, None]] = None
     stop: Optional[Union[str, List[str], None]] = None
     stream: Optional[Union[bool, None]] = False
-    temperature: Optional[float] = 1
+    temperature: Optional[float] = 0.95
     top_p: Optional[float] = 1
     tools: Optional[List[str]] = None
     tool_choice: Optional[Union[str, ToolChoice]] = None
