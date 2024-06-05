@@ -29,7 +29,7 @@ if not os.path.exists(_OUTPUT_DIR):
 
 
 def get_file_path(text):
-    file_name = hashlib.sha256(text.encode("utf-8")).hexdigest()
+    file_name = hashlib.sha256(text.encode("utf-8")).hexdigest() ## 也可以使用uuid
     return os.path.join(_OUTPUT_DIR, f"{file_name}.pptx")
 
 
