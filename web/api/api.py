@@ -4,15 +4,18 @@
 # @FileName: api.py
 # @Software: PyCharm
 # @Affiliation: tfswufe.edu.cn
+import json
 from typing import Annotated
 
 from fastapi import Query, Request, Body
 from fastapi.applications import FastAPI
 
 from lang_chain.client import get_ai_client
+from lang_chain.retriever.knowledge_graph_retriever import generate_graph_info
 from model.graph_entity.search_service import search
 from model.rag.retriever_service import search as retriever_search
 from web.api.body.fake_openai_request import ChatRequest
+from web.api.body.kg_info_retrieve_request import KgInfoRetrieveRequest
 from web.api.body.similarity_request import SimilarityRetrieveQuery
 from web.api.examples import similarity_retrieve_query
 
@@ -91,3 +94,14 @@ def register_routes(app: FastAPI):
         }
         """
         return response.dict()
+
+    @app.post("/update_graph")
+    def update_graph(graph_request: Annotated[KgInfoRetrieveRequest, Body()]):
+
+        try:
+            result = generate_graph_info(graph_request.text)
+            clean_response = result.replace('```', '').strip()
+            graph_data = json.loads(clean_response)
+            return graph_data
+        except Exception as e:
+            return {'error': f"Error parsing graph data: {str(e)}"}

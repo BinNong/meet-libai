@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Graph</title>
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+    <style>
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+        #textbox {
+            flex: 1;
+            padding: 10px;
+            font-size: 40px;
+            border: 1px solid #ccc;
+            overflow: auto;
+            white-space: pre-wrap;
+            outline: none;
+        }
+        #cy {
+            flex: 1;
+            border-left: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="textbox" contenteditable="true"></div>
+        <div id="cy"></div>
+    </div>
+    <script>
+        var colors = [
+            "#FFB3BA", "#FFDFBA", "#FFFFBA", "#BAFFC9", "#BAE1FF",
+            "#B5EAD7", "#ECC5FB", "#FFC3A0", "#FF9AA2", "#FFDAC1",
+            "#E2F0CB", "#B5EAD7", "#C7CEEA", "#FFB7B2", "#FF9AA2",
+            "#FFDAC1", "#C7CEEA", "#FFB3BA", "#FFDFBA", "#FFFFBA",
+            "#BAFFC9", "#BAE1FF", "#FFC3A0", "#FF9AA2", "#FFDAC1",
+            "#E2F0CB", "#B5EAD7", "#C7CEEA", "#FFB7B2", "#FF9AA2",
+            "#FFDAC1", "#C7CEEA", "#FFB3BA", "#FFDFBA", "#FFFFBA",
+            "#BAFFC9", "#BAE1FF", "#FFC3A0", "#FF9AA2", "#FFDAC1",
+            "#E2F0CB", "#B5EAD7", "#C7CEEA", "#FFB7B2", "#FF9AA2",
+            "#FFDAC1", "#C7CEEA", "#FFB3BA", "#FFDFBA", "#FFFFBA",
+            "#BAFFC9", "#BAE1FF", "#FFC3A0", "#FF9AA2", "#FFDAC1"
+        ];
+
+        var colorIndex = 0;
+
+        var cy = cytoscape({
+            container: document.getElementById('cy'),
+            elements: [],
+            style: [
+                {
+                    selector: 'node',
+                    style: {
+                        'background-color': 'data(color)',
+                        'label': 'data(label)',
+                        'color': '#000'
+                    }
+                },
+                {
+                    selector: 'edge',
+                    style: {
+                        'line-color': 'data(color)',
+                        'target-arrow-color': 'data(color)',
+                        'curve-style': 'bezier',
+                        'target-arrow-shape': 'triangle',
+                        'label': 'data(label)'
+                    }
+                }
+            ],
+            layout: {
+                name: 'cose',
+                fit: true,
+                animate: true,
+                animationDuration: 1000,
+                animationEasing: 'ease-in-out'
+            }
+        });
+
+        document.getElementById('textbox').addEventListener('input', function(e) {
+            if (e.inputType === 'insertParagraph' || (e.inputType === 'insertText' && e.data && e.data.endsWith('.'))) {
+                console.log('start fetch')
+                fetch('/update_graph', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({text: this.innerText})
+                })
+                .then(response => response.json())
+                .then(data => {
+                    cy.elements().remove();
+                    // Assign colors to nodes and edges
+                    data.nodes.forEach(node => {
+                        node.data.color = colors[colorIndex % colors.length];
+                        colorIndex++;
+                    });
+                    data.edges.forEach(edge => {
+                        edge.data.color = colors[colorIndex % colors.length];
+                        colorIndex++;
+                    });
+                    cy.add(data);
+                    cy.layout({ name: 'grid' }).run();
+                    highlightText(data);
+                });
+            }
+        });
+
+        function highlightText(data) {
+            var textContent = document.getElementById('textbox').innerText;
+            // Highlight node labels
+            data.nodes.forEach(node => {
+                const label = node.data.label;
+                const color = node.data.color; // get color from node data
+                const regex = new RegExp(`\\b${label}\\b`, 'gi');
+                textContent = textContent.replace(regex, `<span style="background-color: ${color}; color: black;">${label}</span>`);
+            });
+            // Highlight edge labels
+            data.edges.forEach(edge => {
+                const label = edge.data.label;
+                const color = edge.data.color; // get color from edge data
+                const regex = new RegExp(`\\b${label}\\b`, 'gi');
+                textContent = textContent.replace(regex, `<span style="background-color: ${color}; color: black;">${label}</span>`);
+            });
+            document.getElementById('textbox').innerHTML = textContent;
+        }
+
+    </script>
+</body>
+</html>
