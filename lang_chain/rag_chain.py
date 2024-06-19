@@ -8,10 +8,12 @@ import os
 from typing import List, Tuple
 
 from langchain_core.documents import Document
+from openai import Stream
+from openai.types.chat import ChatCompletionChunk
 from zhipuai.core._sse_client import StreamResponse
 
+from lang_chain.client.client_factory import ClientFactory
 from lang_chain.retriever.document_retriever import create_history_aware_query, retrieve_docs
-from lang_chain.zhipu_chat import chat_with_ai_stream
 
 
 def analyze_reference(docs: List[Document]) -> str:
@@ -28,7 +30,7 @@ def analyze_reference(docs: List[Document]) -> str:
     return "参考文献如下：\n```" + "\n".join(doc_names_pages) + "```\n"
 
 
-def invoke(query: str, history: List[List[str]]) -> Tuple[str, StreamResponse]:
+def invoke(query: str, history: List[List[str]]) -> Tuple[str, Stream[ChatCompletionChunk]]:
     new_query = create_history_aware_query(history, query)
     _context, docs = retrieve_docs(new_query)
 
@@ -36,7 +38,7 @@ def invoke(query: str, history: List[List[str]]) -> Tuple[str, StreamResponse]:
     {_context}
     问题: {query}"""
 
-    response = chat_with_ai_stream(_prompt)
+    response =  ClientFactory().get_client().chat_with_ai_stream(_prompt)
     doc_info = analyze_reference(docs)
 
     return doc_info, response

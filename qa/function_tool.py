@@ -7,9 +7,12 @@
 import json
 from typing import List, Tuple, Callable
 
+from openai import Stream
+from openai.types.chat import ChatCompletionChunk
 from zhipuai.core._sse_client import StreamResponse
 
 from dao.graph.graph_dao import GraphDao
+from lang_chain.client.client_factory import ClientFactory
 from lang_chain.retriever.ppt_content_retriever import generate_ppt_content
 from qa.question_type import QuestionType
 from model.graph_entity.search_model import _Value
@@ -24,7 +27,6 @@ from lang_chain.ppt_generation import generate as generate_ppt
 from lang_chain import rag_chain
 from lang_chain.poetry_search import search_by_chinese, search_by_poetry
 from lang_chain.retriever.chinese_text_for_poetry_retriever import extract_text
-from lang_chain.zhipu_chat import chat_with_ai_stream, chat_with_ai
 from qa.prompt_templates import HELLO_ANSWER_TEMPLATE, LLM_HINT
 
 _dao = GraphDao()
@@ -57,9 +59,9 @@ def relation_tool(entities: List[_Value] | None) -> Tuple[str, QuestionType] | N
         return f"关系如下：{start_name}{rel}，详见:{relationship_match[0]['r']['Notes']}", QuestionType.RELATION
 
 
-def hello_tool() -> Tuple[Tuple[str, StreamResponse], QuestionType]:
+def hello_tool() -> Tuple[Tuple[str, Stream[ChatCompletionChunk]], QuestionType]:
     """打招呼"""
-    response = chat_with_ai_stream(HELLO_ANSWER_TEMPLATE)
+    response = ClientFactory().get_client().chat_with_ai_stream(HELLO_ANSWER_TEMPLATE)
     return ("谢谢你的问候😊\n", response), QuestionType.HELLO
 
 
@@ -97,7 +99,7 @@ def video_generation_tool(
 def document_search_tool(
         question: str,
         history: List[List[str] | None] = None
-) -> Tuple[Tuple[str, StreamResponse], QuestionType]:
+) -> Tuple[Tuple[str, Stream[ChatCompletionChunk]], QuestionType]:
     reference, response = rag_chain.invoke(question, history)
     return (reference, response), QuestionType.DOCUMENT
 
@@ -135,9 +137,9 @@ def ppt_generation_tool(
 def process_unknown_question_tool(
         question: str,
         history: List[List[str] | None] = None,
-) -> Tuple[Tuple[str, StreamResponse], QuestionType]:
-    head_: str = chat_with_ai(LLM_HINT)
-    response = chat_with_ai_stream(question, history[-5:])
+) -> Tuple[Tuple[str, Stream[ChatCompletionChunk]], QuestionType]:
+    head_: str = ClientFactory().get_client().chat_with_ai(LLM_HINT)
+    response = ClientFactory().get_client().chat_with_ai_stream(question, history[-5:])
     return (head_, response), QuestionType.UNKNOWN
 
 

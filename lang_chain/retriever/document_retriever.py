@@ -14,8 +14,8 @@ from langchain_core.prompts import ChatPromptTemplate, \
     MessagesPlaceholder
 from langchain_core.runnables import Runnable
 
+from lang_chain.client.client_factory import ClientFactory
 from lang_chain.fake_openai import get_openai_chat_model
-from lang_chain.zhipu_chat import chat_using_messages
 from model.rag.retriever_service import retrieve
 
 
@@ -30,7 +30,8 @@ def create_history_aware_query(history: List[List], query: str) -> str | None:
     messages.append({"role": "user", "content": query})
     messages.append({"role": "user", "content": "根据以上的历史对话，请生成一个更加全面准确而且适合于大模型回答的问题。"})
 
-    new_query = chat_using_messages(messages)
+    new_query = ClientFactory().get_client().chat_using_messages(messages)
+
     return new_query
 
 

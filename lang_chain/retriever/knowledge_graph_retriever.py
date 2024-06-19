@@ -4,9 +4,7 @@
 # @FileName: knowledge_graph_retriever.py
 # @Software: PyCharm
 # @Affiliation: tfswufe.edu.cn
-from typing import Dict
-
-from lang_chain.zhipu_chat import chat_using_messages
+from lang_chain.client.client_factory import ClientFactory
 
 json_example = {'edges': [{'data': {'color': '#FFA07A',
                                     'label': 'label 1',
@@ -46,6 +44,6 @@ def generate_graph_info(raw_text: str) -> str | None:
         {"role": "user", "content": __retriever_prompt}
     ]
 
-    graph_info_result = chat_using_messages(messages)
+    graph_info_result = ClientFactory().get_client().chat_using_messages(messages)
 
     return graph_info_result

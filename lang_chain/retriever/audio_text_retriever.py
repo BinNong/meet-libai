@@ -7,10 +7,9 @@
 from typing import List, Dict
 
 from config.config import Config
-from lang_chain.client import get_ai_client
+from lang_chain.client.client_factory import ClientFactory
 
 _GENERATE_AUDIO_PROMPT_ = "请从上述对话中帮我提取出即将要转成语音的文本，不要包含提示文字"
-__client = get_ai_client()
 
 
 def __construct_messages(question: str, history: List[List | None]) -> List[Dict[str, str]]:
@@ -31,34 +30,22 @@ def __construct_messages(question: str, history: List[List | None]) -> List[Dict
 
 def extract_text(question: str,
                  history: List[List | None] | None = None) -> str:
-    response = __client.chat.completions.create(
-        model="glm-4",
-        messages=__construct_messages(question, history),
-        top_p=0.7,
-        temperature=0.95,
-        max_tokens=1024,
-    )
+    messages = __construct_messages(question, history or [])
+    result = ClientFactory().get_client().chat_using_messages(messages)
 
-    return response.choices[0].message.content
+    return result
 
 
 def extract_language(text: str) -> str:
-    response = __client.chat.completions.create(
-        model="glm-4",
-        messages=[
-            {"role": "system",
-             "content": "你现在扮演信息抽取的角色，要求根据用户输入和AI的回答，正确提取出信息，不要复述，无需包含提示文字"},
-            {"role": "user",
-             "content": f"请从如下文本中提取出文本转语音的语种，提取结果只有4种可能（陕西话，东北话，粤语，台湾话），"
-                        f"如果如下文本不包含这4语种信息，直接返回一个字：无。"
-                        f"（注意：结果中不要包含任何符号和提示信息）：\n{text}"}],
-        top_p=0.7,
-        temperature=0.95,
-        max_tokens=1024,
-    )
-
-    lang_text = response.choices[0].message.content
-    return lang_text
+    messages = [
+        {"role": "system",
+         "content": "你现在扮演信息抽取的角色，要求根据用户输入和AI的回答，正确提取出信息，不要复述，无需包含提示文字"},
+        {"role": "user",
+         "content": f"请从如下文本中提取出文本转语音的语种，提取结果只有4种可能（陕西话，东北话，粤语，台湾话），"
+                    f"如果如下文本不包含这4语种信息，直接返回一个字：无。"
+                    f"（注意：结果中不要包含任何符号和提示信息）：\n{text}"}]
+    result = ClientFactory().get_client().chat_using_messages(messages)
+    return result
 
 
 def get_tts_model_name(lang: str, gender: str) -> str:
@@ -120,17 +107,13 @@ def get_tts_model_name(lang: str, gender: str) -> str:
 
 
 def extract_gender(text: str) -> str:
-    response = __client.chat.completions.create(
-        model="glm-4",
-        messages=[
-            {"role": "system",
-             "content": "你现在扮演信息抽取的角色，要求根据用户输入和AI的回答，正确提取出信息，不要复述，无需包含提示文字"},
-            {"role": "user",
-             "content": f"请从如下文本中提取出文本转语音的声音性别，提取的结果只有两种可能，男声和女声，如果如下文本不包含声音性别，"
-                        f"直接返回一个字：无。（注意：结果中不要包含任何符号和提示信息）：\n{text}"}],
-        top_p=0.7,
-        temperature=0.95,
-        max_tokens=1024,
-    )
+    messages = [
+        {"role": "system",
+         "content": "你现在扮演信息抽取的角色，要求根据用户输入和AI的回答，正确提取出信息，不要复述，无需包含提示文字"},
+        {"role": "user",
+         "content": f"请从如下文本中提取出文本转语音的声音性别，提取的结果只有两种可能，男声和女声，如果如下文本不包含声音性别，"
+                    f"直接返回一个字：无。（注意：结果中不要包含任何符号和提示信息）：\n{text}"}]
 
-    return response.choices[0].message.content
+    result = ClientFactory().get_client().chat_using_messages(messages)
+
+    return result

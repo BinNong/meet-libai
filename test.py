@@ -14,13 +14,13 @@ import unittest
 from icecream import ic
 
 from dao.graph.graph_dao import GraphDao
+from lang_chain.client.client_factory import ClientFactory
 from lang_chain.edge_audio import generate as generate_audio
 from lang_chain.poetry_search import search_by_chinese
 from lang_chain.retriever.audio_text_retriever import extract_language, extract_gender, get_tts_model_name
 from lang_chain.retriever.document_retriever import create_history_aware_query, retrieve_docs
 from lang_chain.retriever.image_text_retriever import extract_text as extract_image_text
 from lang_chain.sora_video import generate as generate_video
-from lang_chain.zhipu_chat import chat_with_ai, chat_with_ai_stream
 from model.graph_entity.data_utils import NodeEntities
 from model.graph_entity.file_utils import generate_md5_file_name
 from model.graph_entity.node_io_processor_coroutine import NodeIOProcessor as NodeIOProcessorCoroutine
@@ -35,15 +35,15 @@ class TestLangChain(unittest.TestCase):
     def test_zhipuai(self):
         prompt = "你知道王安石和苏洵是什么关系吗？"
         prompt_template = f"{prompt}\n请你对以上内容进行文本分类，类别有三种，分别为：人物关系，人物基本信息，其他. 比如：李白和杜甫是什么关系，文本分类结果是人物关系，张三是谁，文本分类结果是人物基本信息。请直接给出分类结果，不要解释，不要多余的内容，不要多余的符号，不要多余的空格，不要多余的空行，不要多余的换行，不要多余的标点符号，不要多余的括号。"
-        print(chat_with_ai(prompt_template))
+        print(ClientFactory().get_client().chat_with_ai(prompt_template))
 
     def test_zhipuai_md(self):
         prompt = "用python写冒泡排序？"
-        print(chat_with_ai(prompt))
+        print(ClientFactory().get_client().chat_with_ai(prompt))
 
     def test_stream(self):
         prompt = "你是谁"
-        result = chat_with_ai_stream(prompt)
+        result = ClientFactory().get_client().chat_with_ai_stream(prompt)
         ic(result)
 
     def test_generate_audio(self):
@@ -103,6 +103,13 @@ class TestLangChain(unittest.TestCase):
     def test_get_tts_model_name(self):
         name = get_tts_model_name(lang="陕西话", gender="女声")
         print(name)
+
+    def test_client_singleton(self):
+        client1 = ClientFactory().get_client()
+        client2 = ClientFactory().get_client()
+        self.assertEqual(client1, client2)
+        ic("client1:", id(client1))
+        ic("client2:", id(client2))
 
 
 class TestGraphDao(unittest.TestCase):

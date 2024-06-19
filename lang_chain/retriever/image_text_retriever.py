@@ -6,10 +6,9 @@
 # @Affiliation: tfswufe.edu.cn
 from typing import List, Dict
 
-from lang_chain.client import get_ai_client
+from lang_chain.client.client_factory import ClientFactory
 
 _PROMPT_ = "请从上述对话中帮我提取出文生图所对应的文本内容"
-__client = get_ai_client()
 
 
 def __construct_messages(question: str, history: List[List | None]) -> List[Dict[str, str]]:
@@ -29,12 +28,8 @@ def __construct_messages(question: str, history: List[List | None]) -> List[Dict
 
 def extract_text(question: str,
                  history: List[List | None] | None = None) -> str:
-    response = __client.chat.completions.create(
-        model="glm-4",
-        messages=__construct_messages(question, history if history else []),
-        top_p=0.7,
-        temperature=0.95,
-        max_tokens=1024,
-    )
+    messages = __construct_messages(question, history or [])
 
-    return response.choices[0].message.content
+    result = ClientFactory().get_client().chat_using_messages(messages)
+
+    return result

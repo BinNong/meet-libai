@@ -10,7 +10,7 @@ from typing import Annotated
 from fastapi import Query, Request, Body
 from fastapi.applications import FastAPI
 
-from lang_chain.client import get_ai_client
+from lang_chain.client.client_factory import ClientFactory
 from lang_chain.retriever.knowledge_graph_retriever import generate_graph_info
 from model.graph_entity.search_service import search
 from model.rag.retriever_service import search as retriever_search
@@ -61,7 +61,7 @@ def register_routes(app: FastAPI):
 
     @app.post("/v1/chat/completions")
     def generate_text(chat_request: Annotated[ChatRequest, Body()]):
-        response = get_ai_client().chat.completions.create(
+        response =  ClientFactory().get_client().client.chat.completions.create(
             model=chat_request.model,
             messages=[m.model_dump() for m in chat_request.messages],
             top_p=0.7,

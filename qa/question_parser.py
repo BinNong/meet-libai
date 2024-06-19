@@ -9,7 +9,7 @@ from typing import List
 
 from icecream import ic
 
-from lang_chain.zhipu_chat import chat_with_ai
+from lang_chain.client.client_factory import ClientFactory
 from model.graph_entity.search_model import _Value
 from model.graph_entity.search_service import search
 from qa.prompt_templates import get_question_parser_prompt
@@ -27,7 +27,7 @@ def parse_question(question: str) -> QuestionType:
         return QuestionType.DOCUMENT
 
     prompt = get_question_parser_prompt(question)
-    parse_result = chat_with_ai(prompt)
+    parse_result = ClientFactory().get_client().chat_with_ai(prompt)
     question_type = QUESTION_MAP[parse_result]
     ic(question_type)
 

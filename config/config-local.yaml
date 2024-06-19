@@ -28,6 +28,7 @@ database:
     url: bolt://localhost:7687
     database: neo4j
     username: neo4j
+    # 注意数字用引号括起来
     password: 123456
 
   redis:

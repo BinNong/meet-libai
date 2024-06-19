@@ -7,7 +7,7 @@
 import json
 from typing import List, Dict
 
-from lang_chain.client import get_ai_client
+from lang_chain.client.client_factory import ClientFactory
 
 # 输出格式
 __output_format = json.dumps({
@@ -67,12 +67,7 @@ def __construct_messages(question: str, history: List[List | None]) -> List[Dict
 
 def generate_ppt_content(question: str,
                          history: List[List | None] | None = None) -> str:
-    response = get_ai_client().chat.completions.create(
-        model="glm-4",
-        messages=__construct_messages(question, history),
-        top_p=0.7,
-        temperature=0.95,
-        max_tokens=1024,
-    )
+    messages = __construct_messages(question, history or [])
+    result = ClientFactory().get_client().chat_using_messages(messages)
 
-    return response.choices[0].message.content
+    return result

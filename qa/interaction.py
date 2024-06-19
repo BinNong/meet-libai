@@ -33,7 +33,7 @@ def chat_libai(message, history):
         partial_message = answers[0][0]
 
         for chunk in answers[0][1]:
-            partial_message = partial_message + chunk.choices[0].delta.content
+            partial_message = partial_message + (chunk.choices[0].delta.content or "")
             yield partial_message
 
     elif (answers[-1] == QuestionType.IMAGES or

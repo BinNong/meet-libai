@@ -7,11 +7,9 @@
 import requests
 
 from env import get_env_value
-from lang_chain.client import get_ai_client
-from lang_chain.zhipu_chat import chat_with_ai
+from lang_chain.client.client_factory import ClientFactory
 
 _SORA_API_URL = "https://fake-sora-api.sorawebui.com/v1/video/generations"
-__client = get_ai_client()
 
 
 def generate(prompt):
@@ -23,7 +21,7 @@ def generate(prompt):
         "Authorization": f"Bearer {get_env_value('OPENAI_API_KEY')}"  # 目前是假的api
     }
     # 将prompt翻译成英文，因为目前仅支持英文
-    en_prompt = chat_with_ai(prompt=f"将以下中文翻译成英文（要求只返回翻译的部分，不要包含提示信息）：{prompt}")
+    en_prompt =  ClientFactory().get_client().chat_with_ai(prompt=f"将以下中文翻译成英文（要求只返回翻译的部分，不要包含提示信息）：{prompt}")
     # Define the data to be sent in the request body
     data = {
         "model": "sora-1.0-turbo",
