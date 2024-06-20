@@ -191,6 +191,8 @@
 >
 > By default, this requires you to login with `neo4j/neo4j` and change the password. You can, for development purposes, disable authentication by passing `--env=NEO4J_AUTH=none` to docker run.
 
+- 当然，也可以不使用docker，直接在你的操作系统上安装neo4j并启动服务即可。
+
 - ##### 安装完成后，将数据导入neo4j     :smiling_imp:
 
 :warning:<u>*注：由于数据的建立和规整涉及第三方版权，本项目不提供完整李白的数据，只提供示例数据*</u>
@@ -241,22 +243,62 @@ neo4j:
 
 #### 4. 配置文件
 
-有3个配置文件：
+有3个配置文件（根据你的需求，决定使用哪个配置，如果没有对应的配置文件，可以拷贝./config/config-local.yaml作为副本，再修改）：
 
 `部署环境配置./config/config-deploy.yaml`
 `测试环境配置./config/config-dev.yaml`
 `本地开发配置./config/config-local.yaml`
 
-在项目根目录下新建`.env`文件作为环境变量配置，并在文件中指定启用哪个环境配置，下面给出一个完整的`.env`内容
+在项目根目录下**<u>新建</u>**`.env`文件作为环境变量配置，并在文件中指定启用哪个环境配置，下面给出一个完整的`.env`内容
 
 ```bash
 #PY_ENVIRONMENT=dev
 PY_ENVIRONMENT=local # 启用本地开发环境
 #PY_ENVIRONMENT=deploy
 PY_DEBUG=true
-ZHIPUAI_API_KEY=  # 这里填入你的zhipu api key
-#OPENAI_API_KEY=
-ORGANIZATION_NAME= # 这里填入你的组织名：
+
+# ---------注意-----------------------------------
+# 如下模型中只能使用其中的某一个模型，不能同时配置多个模型
+# 去对应的官网申请api-key,并替换YOUR API-KEY
+# -----------------------------------------------
+
+# 智普ai
+LLM_BASE_URL=https://open.bigmodel.cn/api/paas/v4/
+LLM_API_KEY=YOUR API-KEY
+MODEL_NAME=glm-4
+
+# kimi
+#LLM_BASE_URL=https://api.moonshot.cn/v1
+#LLM_API_KEY=YOUR API-KEY
+#MODEL_NAME=moonshot-v1-8k
+
+# 百川大模型
+#LLM_BASE_URL=https://api.baichuan-ai.com/v1/
+#LLM_API_KEY=YOUR API-KEY
+#MODEL_NAME=Baichuan4
+
+# 通义千问
+#LLM_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+#LLM_API_KEY=YOUR API-KEY
+#MODEL_NAME=qwen-long
+
+# 零一万物
+#LLM_BASE_URL=https://api.lingyiwanwu.com/v1
+#LLM_API_KEY=YOUR API-KEY
+#MODEL_NAME=yi-large
+
+# deepseek
+# LLM_BASE_URL=https://api.deepseek.com
+# LLM_API_KEY=YOUR API-KEY
+# MODEL_NAME=deepseek-chat
+
+#文生图模型，暂时使用zhipuai
+#OPENAI_API_KEY=YOUR API-KEY
+ZHIPUAI_API_KEY=YOUR API-KEY
+
+# 这里填入你的组织名
+ORGANIZATION_NAME= xxx团队
+
 ```
 
 #### 5. 白话文搜古文、古文搜古文
@@ -322,7 +364,7 @@ score表示得分，value表示一条数据，value中的的各个字段值用##
 
 启动成功后可以访问
 
-- webui http://0.0.0.0:7860
+- webui http://localhost:7860
 - api http://localhost:18881/docs
 - api doc http://localhost:18881/redoc
 
@@ -334,7 +376,7 @@ python app.py
 
 启动成功后可以访问 :mag:
 
-- webui http://0.0.0.0:7860
+- webui http://localhost:7860
 - api http://localhost:18881/docs
 - api doc http://localhost:18881/redoc
 
@@ -346,7 +388,7 @@ python webui.py
 
 启动成功后可以访问 :package:
 
-- webui http://0.0.0.0:7860
+- webui http://localhost:7860
 
 #### 7. 调用程序api构建图数据库的实体索引（在本地创建ac自动机），这一步成功后才可使用图数据
 访问api： http://localhost:18881/docs
