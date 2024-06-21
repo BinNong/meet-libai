@@ -12,6 +12,7 @@ from lang_chain.client.deepseek.client import DeepseekClient
 from lang_chain.client.lingyiwanwu.client import LingyiwanwuClient
 from lang_chain.client.llm_client_generic import LLMClientGeneric
 from lang_chain.client.moonshot.client import MoonshotClient
+from lang_chain.client.ollama.client import OllamaClient
 from lang_chain.client.qwen.client import QwenClient
 from lang_chain.client.zhipu.client import ZhipuClient
 from utils.singleton import Singleton
@@ -36,38 +37,58 @@ class ClientFactory(metaclass=Singleton):
 
     def __init__(self):
         self._client_url = get_env_value("LLM_BASE_URL")
+        self._api_key = get_env_value("LLM_API_KEY")
         self._sanity_check()
+
+    @property
+    def client_provider(self):
+        return self._client_provider
+
+    @property
+    def client_url(self):
+        return self._client_url
+
+    @property
+    def api_key(self):
+        return self._api_key
 
     def _sanity_check(self):
         if not is_valid_url(self._client_url):
             raise ClientUrlFormatError("client url provided is not a url string")
 
-        if self._client_url not in self._client_provider_mappings:
-            raise ClientAPIUnsupportedError("Invalid client API")
+        # if self._client_url not in self._client_provider_mappings:
+        #     raise ClientAPIUnsupportedError("Invalid client API")
 
-        self._client_provider = self._client_provider_mappings[self._client_url]
+        if self._client_url in self._client_provider_mappings:
+            self._client_provider = self._client_provider_mappings[self._client_url]
+        elif self.api_key == "ollama":
+            self._client_provider = ClientProvider.OLLAMA
+        else:
+            self._client_provider = ClientProvider.UNKNOWN
 
     def get_client(self) -> LLMClientGeneric:
         if self._client_provider == ClientProvider.ZHIPU:
             return ZhipuClient()
 
-        elif self._client_provider == ClientProvider.MOONSHOT:
+        if self._client_provider == ClientProvider.MOONSHOT:
             return MoonshotClient()
 
-        elif self._client_provider == ClientProvider.BAICHUAN:
+        if self._client_provider == ClientProvider.BAICHUAN:
             return BaichuanClient()
 
-        elif self._client_provider == ClientProvider.QWEN:
+        if self._client_provider == ClientProvider.QWEN:
             return QwenClient()
 
-        elif self._client_provider == ClientProvider.LINGYIWANWU:
+        if self._client_provider == ClientProvider.LINGYIWANWU:
             return LingyiwanwuClient()
 
-        elif self._client_provider == ClientProvider.DEEPSEEK:
+        if self._client_provider == ClientProvider.DEEPSEEK:
             return DeepseekClient()
 
-        else:
-            raise ClientAPIUnsupportedError("No client API adapted")
+        if self._client_provider == ClientProvider.OLLAMA:
+            return OllamaClient()
+
+        raise ClientAPIUnsupportedError("No client API adapted")
 
 
 if __name__ == "__main__":

@@ -12,9 +12,11 @@ class ClientProvider(Enum):
     used to distinguish the client provider
     """
 
+    UNKNOWN = None
     ZHIPU = "zhipu"
     BAICHUAN = "baichuan"
     QWEN = "qwen"
     MOONSHOT = "moonshot"
     LINGYIWANWU = "lingyiwanwu"
     DEEPSEEK = "deepseek"
+    OLLAMA = "ollama"
