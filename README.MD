@@ -261,6 +261,7 @@ PY_DEBUG=true
 # 如下模型中只能使用其中的某一个模型，不能同时配置多个模型
 # 去对应的官网申请api-key,并替换YOUR API-KEY
 # 也可以使用ollama本地运行的模型，api-key设置为ollama
+# ⚠️文生图的模型暂时使用zhipuai，因此要配置zhipuai的api-key
 # -----------------------------------------------
 
 # 智普ai
@@ -293,15 +294,14 @@ MODEL_NAME=glm-4
 # LLM_API_KEY=ollama
 # MODEL_NAME=deepseek-chat
 
-#文生图模型，暂时使用zhipuai
-#OPENAI_API_KEY=YOUR API-KEY
-ZHIPUAI_API_KEY=YOUR API-KEY
-
 # ollama
 #LLM_BASE_URL=http://localhost:11434/v1/
 #LLM_API_KEY=ollama
 #MODEL_NAME=qwen2:0.5b
 
+#文生图模型，暂时使用zhipuai
+#OPENAI_API_KEY=YOUR API-KEY
+ZHIPUAI_API_KEY=YOUR API-KEY
 
 # 这里填入你的组织名
 ORGANIZATION_NAME= xxx团队
