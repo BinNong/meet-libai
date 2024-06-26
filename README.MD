@@ -407,6 +407,29 @@ python webui.py
 
 ![graph_entity_build](asset/images/graph_entity_build.png)
 
+
+
+#### 8.知识图谱构建演示demo
+
+ 1.按照前面的步骤启动程序之后（程序保持运行），运行根目录下的graph_demo_ui.py：
+
+```bash
+python graph_demo_ui.py
+```
+2. 访问地址：
+
+   ```
+   http://127.0.0.1:80
+   ```
+   如下图在左侧输入原始文本，以英文逗号结尾自动触发构建过程（需要一定的时间等待）！
+   ![graph_entity_build](asset/images/llm_graph.jpg)
+
+
+
+------
+
+
+
 # Coffee :custard:
 
 如果你愿意，你可以**<u>打赏</u>**我 <img src="https://www.pngitem.com/pimgs/m/145-1450643_providing-encouragement-and-support-to-help-people-icon.png" alt="Providing Encouragement And Support To Help People - Icon, HD Png Download  , Transparent Png Image - PNGitem" width="50" />，不在乎数量，你的一个不小心的举动是我前进的动力 <img src="https://static.vecteezy.com/system/resources/previews/028/086/542/non_2x/keep-going-arrow-succes-challenge-color-icon-illustration-vector.jpg" alt="keep going arrow succes challenge color icon vector illustration 28086542  Vector Art at Vecteezy" width="50" />，业余时间搬砖实属不易。

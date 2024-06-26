@@ -9,6 +9,7 @@ from typing import Annotated
 
 from fastapi import Query, Request, Body
 from fastapi.applications import FastAPI
+from icecream import ic
 
 from lang_chain.client.client_factory import ClientFactory
 from lang_chain.retriever.knowledge_graph_retriever import generate_graph_info
@@ -102,6 +103,7 @@ def register_routes(app: FastAPI):
             result = generate_graph_info(graph_request.text)
             clean_response = result.replace('```', '').strip()
             graph_data = json.loads(clean_response)
+            ic(graph_data)
             return graph_data
         except Exception as e:
             return {'error': f"Error parsing graph data: {str(e)}"}
