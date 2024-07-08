@@ -294,6 +294,12 @@ MODEL_NAME=glm-4
 # LLM_API_KEY=ollama
 # MODEL_NAME=deepseek-chat
 
+# 豆包
+#LLM_BASE_URL=https://ark.cn-beijing.volces.com/api/v3/
+#LLM_API_KEY=YOUR API-KEY
+# 注意：对于豆包api，model_name参数填入ENDPOINT_ID，具体申请操作在豆包api官网提供。
+#MODEL_NAME=
+
 # ollama
 #LLM_BASE_URL=http://localhost:11434/v1/
 #LLM_API_KEY=ollama

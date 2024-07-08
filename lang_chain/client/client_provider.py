@@ -19,4 +19,5 @@ class ClientProvider(Enum):
     MOONSHOT = "moonshot"
     LINGYIWANWU = "lingyiwanwu"
     DEEPSEEK = "deepseek"
+    DOUBAO = "doubao"
     OLLAMA = "ollama"

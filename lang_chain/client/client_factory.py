@@ -9,6 +9,7 @@ from lang_chain.client.baichuan.client import BaichuanClient
 from lang_chain.client.client_error import ClientUrlFormatError, ClientAPIUnsupportedError
 from lang_chain.client.client_provider import ClientProvider
 from lang_chain.client.deepseek.client import DeepseekClient
+from lang_chain.client.doubao.client import DoubaoClient
 from lang_chain.client.lingyiwanwu.client import LingyiwanwuClient
 from lang_chain.client.llm_client_generic import LLMClientGeneric
 from lang_chain.client.moonshot.client import MoonshotClient
@@ -32,7 +33,8 @@ class ClientFactory(metaclass=Singleton):
         "https://api.lingyiwanwu.com/v1/": ClientProvider.LINGYIWANWU,
         "https://api.lingyiwanwu.com/v1": ClientProvider.LINGYIWANWU,
         "https://api.deepseek.com/": ClientProvider.DEEPSEEK,
-        "https://api.deepseek.com": ClientProvider.DEEPSEEK,
+        "https://ark.cn-beijing.volces.com/api/v3/": ClientProvider.DOUBAO,
+        "https://ark.cn-beijing.volces.com/api/v3": ClientProvider.DOUBAO,
     }
 
     def __init__(self):
@@ -84,6 +86,9 @@ class ClientFactory(metaclass=Singleton):
 
         if self._client_provider == ClientProvider.DEEPSEEK:
             return DeepseekClient()
+
+        if self._client_provider == ClientProvider.DOUBAO:
+            return DoubaoClient()
 
         if self._client_provider == ClientProvider.OLLAMA:
             return OllamaClient()
