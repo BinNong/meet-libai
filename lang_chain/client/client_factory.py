@@ -35,6 +35,8 @@ class ClientFactory(metaclass=Singleton):
         "https://api.deepseek.com/": ClientProvider.DEEPSEEK,
         "https://ark.cn-beijing.volces.com/api/v3/": ClientProvider.DOUBAO,
         "https://ark.cn-beijing.volces.com/api/v3": ClientProvider.DOUBAO,
+        get_env_value("LLM_BASE_URL"):ClientProvider.ONEAPI
+
     }
 
     def __init__(self):
