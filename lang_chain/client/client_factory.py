@@ -16,6 +16,7 @@ from lang_chain.client.moonshot.client import MoonshotClient
 from lang_chain.client.ollama.client import OllamaClient
 from lang_chain.client.qwen.client import QwenClient
 from lang_chain.client.zhipu.client import ZhipuClient
+from lang_chain.client.oneapi.client import OneAPIClient
 from utils.singleton import Singleton
 from utils.url_paser import is_valid_url
 
@@ -35,6 +36,8 @@ class ClientFactory(metaclass=Singleton):
         "https://api.deepseek.com/": ClientProvider.DEEPSEEK,
         "https://ark.cn-beijing.volces.com/api/v3/": ClientProvider.DOUBAO,
         "https://ark.cn-beijing.volces.com/api/v3": ClientProvider.DOUBAO,
+        get_env_value("LLM_BASE_URL"):ClientProvider.ONEAPI
+
     }
 
     def __init__(self):
@@ -92,7 +95,8 @@ class ClientFactory(metaclass=Singleton):
 
         if self._client_provider == ClientProvider.OLLAMA:
             return OllamaClient()
-
+        if self._client_provider==ClientProvider.ONEAPI:
+            return OneAPIClient()
         raise ClientAPIUnsupportedError("No client API adapted")
 
 
