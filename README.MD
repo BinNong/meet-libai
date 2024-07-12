@@ -17,9 +17,9 @@
 [![Dependency Status](https://img.shields.io/librariesio/github/BinNong/meet-libai)](https://libraries.io/github/BinNong/meet-libai)
 [![Open Issues](https://img.shields.io/github/issues-raw/BinNong/meet-libai)](https://github.com/BinNong/meet-libai/issues)
 
+ :vertical_traffic_light:  [哔哩哔哩详细视频介绍和引导](https://www.bilibili.com/video/BV17m41167KQ/?spm_id_from=333.788&vd_source=1a1de2338b5f002609ba8cca8fb71a13)
 
-
-<img src="https://thumbnail1.baidupcs.com/thumbnail/fe93bffddt8c872e01d326917f3719dc?fid=34043472-250528-1056602083529884&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-h4LKOi6zVLPO68rWmwqIDNWWmfI%3d&expires=8h&chkbd=0&chkv=0&dp-logid=497129515894838342&dp-callid=0&time=1714478400&size=c1440_u900&quality=90&vuk=34043472&ft=image&autopolicy=1" width="50%;" />
+<img src="./asset/images/ui.png" width="50%;" />
 
 ### 1. 项目背景
 
@@ -434,7 +434,7 @@ python graph_demo_ui.py
 
 ------
 
-
+ :vertical_traffic_light:  [哔哩哔哩详细视频介绍和引导](https://www.bilibili.com/video/BV17m41167KQ/?spm_id_from=333.788&vd_source=1a1de2338b5f002609ba8cca8fb71a13)
 
 # Coffee :custard:
 
