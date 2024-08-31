@@ -5,7 +5,7 @@
 # @Software: PyCharm
 # @Affiliation: tfswufe.edu.cn
 from abc import abstractmethod, ABCMeta, ABC
-from typing import List, Dict
+from typing import List, Dict, Tuple
 
 from openai import OpenAI, Stream
 from openai.types.chat import ChatCompletion, ChatCompletionChunk
@@ -34,7 +34,6 @@ class LLMClientBase(object):
     def chat_with_ai(self, prompt: str) -> str | None:
         raise NotImplementedError()
 
-
     @staticmethod
     def construct_messages(prompt: str, history: List[List | None]) -> List[Dict[str, str]]:
         pass
@@ -46,4 +45,9 @@ class LLMClientBase(object):
 
     @abstractmethod
     def chat_using_messages(self, messages: List[Dict]) -> str | None:
+        raise NotImplementedError()
+
+    @abstractmethod
+    def chat_on_tools(self, prompt: str, tools: List[Dict], history: List[List[str]] | None = None) -> (
+            Tuple[str, Dict] | None):
         raise NotImplementedError()

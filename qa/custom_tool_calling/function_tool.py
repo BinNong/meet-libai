@@ -9,12 +9,11 @@ from typing import List, Tuple, Callable
 
 from openai import Stream
 from openai.types.chat import ChatCompletionChunk
-from zhipuai.core._sse_client import StreamResponse
 
 from dao.graph.graph_dao import GraphDao
 from lang_chain.client.client_factory import ClientFactory
 from lang_chain.retriever.ppt_content_retriever import generate_ppt_content
-from qa.question_type import QuestionType
+from qa.custom_tool_calling.question_type import QuestionType
 from model.graph_entity.search_model import _Value
 from lang_chain.retriever.image_text_retriever import extract_text as extract_image_text
 from lang_chain.zhipu_images import generate as generate_image
@@ -27,7 +26,7 @@ from lang_chain.ppt_generation import generate as generate_ppt
 from lang_chain import rag_chain
 from lang_chain.poetry_search import search_by_chinese, search_by_poetry
 from lang_chain.retriever.chinese_text_for_poetry_retriever import extract_text
-from qa.prompt_templates import HELLO_ANSWER_TEMPLATE, LLM_HINT
+from qa.custom_tool_calling.prompt_templates import HELLO_ANSWER_TEMPLATE, LLM_HINT
 
 _dao = GraphDao()
 
@@ -105,21 +104,23 @@ def document_search_tool(
 
 
 def search_poetry_by_chinese_tool(
-        question_type: QuestionType,
         question: str,
         history: List[List[str] | None] = None
 ) -> Tuple[str, QuestionType]:
-    text = extract_text(question, question_type, history)
+    text = extract_text(question,
+                        "chinese2poetry",
+                        history)
     table = search_by_chinese(text)
     return table, QuestionType.CHINESE2POETRY
 
 
 def search_poetry_by_poetry_tool(
-        question_type: QuestionType,
         question: str,
         history: List[List[str] | None] = None
 ) -> Tuple[str, QuestionType]:
-    text = extract_text(question, question_type, history)
+    text = extract_text(question,
+                        "poetry2poetry",
+                        history)
     table = search_by_poetry(text)
     return table, QuestionType.CHINESE2POETRY
 

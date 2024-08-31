@@ -4,7 +4,6 @@
 # @FileName: question_parser.py
 # @Software: PyCharm
 # @Affiliation: tfswufe.edu.cn
-from enum import Enum
 from typing import List
 
 from icecream import ic
@@ -12,8 +11,8 @@ from icecream import ic
 from lang_chain.client.client_factory import ClientFactory
 from model.graph_entity.search_model import _Value
 from model.graph_entity.search_service import search
-from qa.prompt_templates import get_question_parser_prompt
-from qa.question_type import QuestionType, QUESTION_MAP
+from qa.custom_tool_calling.prompt_templates import get_question_parser_prompt
+from qa.custom_tool_calling.question_type import QuestionType, QUESTION_MAP
 
 
 def parse_question(question: str) -> QuestionType:

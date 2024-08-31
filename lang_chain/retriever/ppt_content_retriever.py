@@ -46,7 +46,7 @@ __output_format = json.dumps({
     ],
 }, ensure_ascii=True)
 
-_GENERATE_PPT_PROMPT_ = f'''请你根据用户要求生成ppt的详细内容，不要省略。按这个JSON格式输出{__output_format}，只能返回JSON，且JSON不要用```包裹，不要返回markdown格式'''
+_GENERATE_PPT_PROMPT_ = f'''请你根据用户要求生成ppt的详细内容，使用中文，不要省略内容。按这个JSON格式输出{__output_format}，只能返回JSON，且JSON不要用```包裹，不要返回markdown格式'''
 
 
 def __construct_messages(question: str, history: List[List | None]) -> List[Dict[str, str]]:

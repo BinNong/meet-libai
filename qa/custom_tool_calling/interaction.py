@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2024/2/23 19:33
 # @Author  : nongbin
-# @FileName: interaction.py
+# @FileName: bot.py
 # @Software: PyCharm
 # @Affiliation: tfswufe.edu.cn
 import time
+from typing import List, Optional
 
 from icecream import ic
 
-from qa.answer import get_answer
-from qa.question_type import QuestionType
+from qa.custom_tool_calling.answer import get_answer
+from qa.custom_tool_calling.question_type import QuestionType
 
 
-def chat_libai(message, history):
+def chat_libai(message: str, history: List[Optional[List]] | None):
     ic(history)
     ic(message)
     answers = get_answer(message, history)

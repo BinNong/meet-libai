@@ -36,9 +36,9 @@ class ClientFactory(metaclass=Singleton):
         "https://api.deepseek.com/": ClientProvider.DEEPSEEK,
         "https://ark.cn-beijing.volces.com/api/v3/": ClientProvider.DOUBAO,
         "https://ark.cn-beijing.volces.com/api/v3": ClientProvider.DOUBAO,
-        get_env_value("LLM_BASE_URL"):ClientProvider.ONEAPI
-
     }
+    if get_env_value("LLM_BASE_URL") not in _client_provider_mappings:
+        _client_provider_mappings[get_env_value("LLM_BASE_URL")] = ClientProvider.ONEAPI
 
     def __init__(self):
         self._client_url = get_env_value("LLM_BASE_URL")
@@ -95,7 +95,7 @@ class ClientFactory(metaclass=Singleton):
 
         if self._client_provider == ClientProvider.OLLAMA:
             return OllamaClient()
-        if self._client_provider==ClientProvider.ONEAPI:
+        if self._client_provider == ClientProvider.ONEAPI:
             return OneAPIClient()
         raise ClientAPIUnsupportedError("No client API adapted")
 

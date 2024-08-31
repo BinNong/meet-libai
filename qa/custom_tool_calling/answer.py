@@ -6,10 +6,9 @@
 # @Affiliation: tfswufe.edu.cn
 from typing import Tuple, List, Any
 
-from dao.graph.graph_dao import GraphDao
-from qa.function_tool import map_question_to_function, map_question_to_function_args
+from qa.custom_tool_calling.function_tool import map_question_to_function, map_question_to_function_args
 
-from qa.question_parser import parse_question, check_entity, QuestionType
+from qa.custom_tool_calling.question_parser import parse_question, check_entity, QuestionType
 
 
 def get_answer(question: str,

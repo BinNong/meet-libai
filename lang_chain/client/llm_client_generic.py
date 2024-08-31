@@ -4,7 +4,8 @@
 # @FileName: llm_client_generic.py
 # @Software: PyCharm
 # @Affiliation: tfswufe.edu.cn
-from typing import List, Dict
+import json
+from typing import List, Dict, Tuple
 
 from openai import Stream
 from openai.types.chat import ChatCompletion, ChatCompletionChunk
@@ -76,3 +77,22 @@ class LLMClientGeneric(LLMClientBase, metaclass=Singleton):
         )
 
         return response.choices[0].message.content
+
+    @override
+    def chat_on_tools(self, prompt: str, tools: List[Dict], history: List[List[str]] | None = None) -> (
+            Tuple[str, Dict] | None):
+        response = self.client.chat.completions.create(
+            model=self.model_name,
+            messages=self.construct_messages(prompt, history or []),
+            tools=tools,
+            tool_choice="auto"
+        )
+        if response.choices[0].message.tool_calls is None:
+            return None
+        function_name: str = response.choices[0].message.tool_calls[0].function.name
+        function_args: Dict = json.loads(response.choices[0].message.tool_calls[0].function.arguments)
+
+        return function_name, function_args
+
+    def generate_image(self, prompt: str):
+        raise NotImplementedError

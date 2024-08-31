@@ -89,7 +89,7 @@ class RagRetriever(ModelBase, ABC):
             raise ModelLoadError("vector db file not found")
 
         self._logger.info("loading vector db")
-        self._vector = FAISS.load_local(model_path, self._embedding)
+        self._vector = FAISS.load_local(model_path, self._embedding, allow_dangerous_deserialization=True)
         self._retriever = self._vector.as_retriever(search_kwargs={"k": 6})
 
     def dump(self, *args, **kwargs):

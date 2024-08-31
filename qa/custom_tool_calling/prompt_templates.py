@@ -6,7 +6,7 @@
 # @Affiliation: tfswufe.edu.cn
 import os
 
-from qa.question_type import QUESTION_MAP
+from qa.custom_tool_calling.question_type import QUESTION_MAP
 organization_name = os.environ.get('ORGANIZATION_NAME')
 QUESTION_PARSE_TEMPLATE = (f"你扮演文本分类的工具助手，类别有{len(QUESTION_MAP)}种，"
                            f"分别为：人物关系，图片生成，视频生成，音频生成，问候语，以白话文搜古诗文，以古文搜古文，PPT生成，其他。"

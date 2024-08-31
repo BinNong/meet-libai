@@ -26,8 +26,8 @@ from model.graph_entity.file_utils import generate_md5_file_name
 from model.graph_entity.node_io_processor_coroutine import NodeIOProcessor as NodeIOProcessorCoroutine
 from model.graph_entity.node_io_processor_thread import NodeIOProcessor as NodeIOProcessorThread
 from model.graph_entity.search_model import INSTANCE
-from qa.answer import get_answer
-from qa.question_parser import parse_question, QuestionType
+from qa.custom_tool_calling.answer import get_answer
+from qa.custom_tool_calling.question_parser import parse_question, QuestionType
 
 
 class TestLangChain(unittest.TestCase):

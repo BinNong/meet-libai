@@ -10,7 +10,7 @@ import gradio as gr
 
 from config.config import Config
 from env import get_app_root
-from qa.interaction import chat_libai
+from qa.bot import ChatBot
 
 __AVATAR = (os.path.join(get_app_root(), "resource/avatar/user.png"),
             os.path.join(get_app_root(), "resource/avatar/libai.jpeg"))
@@ -18,7 +18,7 @@ __AVATAR = (os.path.join(get_app_root(), "resource/avatar/user.png"),
 
 def run_webui():
     chat_app = gr.ChatInterface(
-        chat_libai,
+        ChatBot().chat,
         chatbot=gr.Chatbot(height=400, avatar_images=__AVATAR),
         textbox=gr.Textbox(placeholder="请输入你的问题", container=False, scale=7),
         title="「遇见李白」📒",

@@ -60,6 +60,8 @@ database:
       min-idle: 1
 
 lang-chain:
+  #用户意图解析方式：custom 或者 tool_calling
+  question_parse: tool_calling
   audio:
     voice:
       NORMAL-MALE: zh-CN-YunxiNeural # male 正式
