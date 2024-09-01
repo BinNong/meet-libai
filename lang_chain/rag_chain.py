@@ -38,7 +38,7 @@ def invoke(query: str, history: List[List[str]]) -> Tuple[str, Stream[ChatComple
     {_context}
     问题: {query}"""
 
-    response =  ClientFactory().get_client().chat_with_ai_stream(_prompt)
+    response = ClientFactory().get_client().chat_with_ai_stream(_prompt)
     doc_info = analyze_reference(docs)
 
     return doc_info, response

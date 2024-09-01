@@ -21,5 +21,5 @@ class ClientProvider(Enum):
     DEEPSEEK = "deepseek"
     DOUBAO = "doubao"
     OLLAMA = "ollama"
-    ONEAPI = "oneapi"
+    ANYAPI = "anyapi"
 

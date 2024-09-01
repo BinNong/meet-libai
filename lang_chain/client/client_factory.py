@@ -16,7 +16,7 @@ from lang_chain.client.moonshot.client import MoonshotClient
 from lang_chain.client.ollama.client import OllamaClient
 from lang_chain.client.qwen.client import QwenClient
 from lang_chain.client.zhipu.client import ZhipuClient
-from lang_chain.client.oneapi.client import OneAPIClient
+from lang_chain.client.anyapi.client import AnyAPIClient
 from utils.singleton import Singleton
 from utils.url_paser import is_valid_url
 
@@ -38,7 +38,7 @@ class ClientFactory(metaclass=Singleton):
         "https://ark.cn-beijing.volces.com/api/v3": ClientProvider.DOUBAO,
     }
     if get_env_value("LLM_BASE_URL") not in _client_provider_mappings:
-        _client_provider_mappings[get_env_value("LLM_BASE_URL")] = ClientProvider.ONEAPI
+        _client_provider_mappings[get_env_value("LLM_BASE_URL")] = ClientProvider.ANYAPI
 
     def __init__(self):
         self._client_url = get_env_value("LLM_BASE_URL")
@@ -95,8 +95,9 @@ class ClientFactory(metaclass=Singleton):
 
         if self._client_provider == ClientProvider.OLLAMA:
             return OllamaClient()
-        if self._client_provider == ClientProvider.ONEAPI:
-            return OneAPIClient()
+
+        if self._client_provider == ClientProvider.ANYAPI:
+            return AnyAPIClient()
         raise ClientAPIUnsupportedError("No client API adapted")
 
 

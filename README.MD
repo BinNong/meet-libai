@@ -305,6 +305,11 @@ MODEL_NAME=glm-4
 #LLM_API_KEY=ollama
 #MODEL_NAME=qwen2:0.5b
 
+# anyapi
+#LLM_BASE_URL=https://api.siliconflow.cn/v1
+#LLM_API_KEY=YOUR API-KEY
+#MODEL_NAME=Qwen/Qwen2-7B-Instruct
+
 #文生图模型，暂时使用zhipuai
 #OPENAI_API_KEY=YOUR API-KEY
 ZHIPUAI_API_KEY=YOUR API-KEY

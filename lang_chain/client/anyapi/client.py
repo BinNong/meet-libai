@@ -7,9 +7,9 @@
 from lang_chain.client.llm_client_generic import LLMClientGeneric
 
 
-class OneAPIClient(LLMClientGeneric):
+class AnyAPIClient(LLMClientGeneric):
     """
-    ONEAPI AI Client
+    ANYAPI AI Client
     """
     def __init__(self,*args, **kwargs):
         super().__init__(*args, **kwargs)
