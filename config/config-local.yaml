@@ -15,6 +15,7 @@ model:
   embedding:
     model-name: iic/nlp_corom_sentence-embedding_chinese-base
     device: cpu
+  digital-men: your api (for instance, https://api.ai.iic.com)
 
 database:
   mysql:

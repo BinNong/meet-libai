@@ -233,5 +233,22 @@ class TestMkdir(unittest.TestCase):
     def test(self):
         os.mkdir("temp/1")
 
+
+class TestDigitalMen(unittest.TestCase):
+    def test(self):
+        import requests
+
+        url = "https://yflhumw5lhw9r16f-6006.container.x-gpu.com/process"
+        headers = {
+            "Content-Type": "application/json"
+        }
+        data = {
+            "text": "日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺，疑是银河落九天。"
+        }
+
+        response = requests.post(url, headers=headers, json=data)
+
+        print(response.status_code)
+        print(response.json())
 if __name__ == '__main__':
     unittest.main()

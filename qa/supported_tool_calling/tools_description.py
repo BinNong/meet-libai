@@ -27,7 +27,7 @@ GET_RELATION_INFO = {
     "type": "function",
     "function": {
         "name": "get_relation_info",
-        "description": "根据两个人的姓名，获取两个人的关联信息",
+        "description": "给定两个诗人的姓名，查询两个人的关系, 比如李白与杜甫的关系是什么",
         "parameters": {
             "type": "object",
             "properties": {
@@ -116,6 +116,22 @@ GENERATE_VIDEO = {
                 "text": {
                     "type": "string",
                     "description": "用户的描述",
+                }
+            }
+        }
+    }
+}
+GENERATE_DIGITAL_MEN = {
+    "type": "function",
+    "function": {
+        "name": "generate_digital_men",
+        "description": "根据用户的要求，生成数字人",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "transcript": {
+                    "type": "string",
+                    "description": "数字人播报的内容",
                 }
             }
         }

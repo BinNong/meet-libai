@@ -12,8 +12,9 @@ from openai.types.chat import ChatCompletionChunk
 
 @dataclasses.dataclass
 class ChatResponse:
-    chunks: Stream[ChatCompletionChunk] | None = None
-    end: str = ""
+    chunks: Stream[ChatCompletionChunk] | str | None = None
+    prefix: str = ""
+    suffix: str = ""
 
     def __call__(self, *args, **kwargs):
         partial_message = ""
@@ -22,4 +23,4 @@ class ChatResponse:
                 partial_message = partial_message + (chunk.choices[0].delta.content or "")
                 yield partial_message
 
-        yield partial_message + self.end
+        yield self.prefix + partial_message + self.suffix

@@ -16,12 +16,13 @@ from lang_chain.retriever.audio_text_retriever import get_tts_model_name
 from lang_chain.retriever.chinese_text_for_poetry_retriever import extract_text
 from lang_chain.retriever.ppt_content_retriever import generate_ppt_content
 from lang_chain.sora_video import generate as _generate_video
+from lang_chain.digital_men import generate as _generate_digital_men
 from logger import Logger
 from qa.custom_tool_calling.prompt_templates import HELLO_ANSWER_TEMPLATE
 from qa.custom_tool_calling.question_parser import check_entity
 from qa.supported_tool_calling.tools_description import GET_PERSONAL_PROFILE, GET_RELATION_INFO, GET_HELLO_INFO, \
     GENERATE_IMAGES, GENERATE_SPEECH, GENERATE_VIDEO, SEARCH_DOCUMENTS, GENERATE_PPT, SEARCH_POETRY_BY_CHINESE, \
-    SEARCH_POETRY_BY_POETRY
+    SEARCH_POETRY_BY_POETRY, GENERATE_DIGITAL_MEN
 from qa.supported_tool_calling.utils import ChatResponse
 from lang_chain.ppt_generation import generate as _generate_ppt
 
@@ -75,6 +76,13 @@ def generate_video(text: str) -> Tuple[str, str]:
     return video_url, "视频链接"
 
 
+def generate_digital_men(transcript: str) -> Tuple[str, str] | ChatResponse:
+    digital_men_url = _generate_digital_men(transcript)
+    if digital_men_url is None:
+        return ChatResponse(None, "数字人生成失败")
+    return digital_men_url, "数字人链接"
+
+
 def generate_ppt(text: str, history: List[List[str]] | None = None) -> Tuple[str, str]:
     raw_text: str = generate_ppt_content(text, history)
     ppt_content = json.loads(raw_text)
@@ -113,6 +121,7 @@ tools = [
     GENERATE_IMAGES,
     GENERATE_SPEECH,
     GENERATE_VIDEO,
+    GENERATE_DIGITAL_MEN,
     SEARCH_DOCUMENTS,
     GENERATE_PPT,
     SEARCH_POETRY_BY_CHINESE,
@@ -126,6 +135,7 @@ tools_mapping: Dict[str, Callable] = {
     "generate_images": generate_images,
     "generate_speech": generate_speech,
     "generate_video": generate_video,
+    "generate_digital_men": generate_digital_men,
     "search_documents": search_documents,
     "generate_ppt": generate_ppt,
     "search_poetry_by_chinese": search_poetry_by_chinese,
@@ -133,8 +143,8 @@ tools_mapping: Dict[str, Callable] = {
 }
 
 
-def get_tools(question: str, messages: List[List] | None) -> tuple[Callable[..., Any], dict] | None:
-    result = ClientFactory().get_client().chat_on_tools(question, tools, messages)
+def get_tools(question: str, history: List[List] | None) -> tuple[Callable[..., Any], dict] | None:
+    result = ClientFactory().get_client().chat_on_tools(question, tools, history)
 
     if not result:
         return None
